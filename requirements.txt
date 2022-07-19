@@ -16,3 +16,4 @@ jupyter
 opencv-python-headless
 nbstripout
 nbsphinx
+librosa

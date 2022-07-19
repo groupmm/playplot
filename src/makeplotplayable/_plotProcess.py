@@ -7,8 +7,9 @@ import matplotlib
 import matplotlib.axes
 import matplotlib.pyplot as plt
 import numpy as np
+from dill import loads
 
-from ._util import SharedObject, loads, show_error_box, PlotProcessException
+from ._util import SharedObject, show_error_box, PlotProcessException
 
 
 # builds a piecewise linear function mapping from X to Y
@@ -323,17 +324,18 @@ def call_func(func, args, kwargs) -> Optional[
         fig, ax = ret
         return fig, ax, dict()
 
-    # invalid or None (static output)
-    else:
+    elif ret is None:
         return None
+
+    else:
+        raise ValueError("Invalid return value from plotting function")
 
 
 # entry point for process
-def plot_process_entrypoint(so: SharedObject, func_dill, akw_args_dill):
+def plot_process_entrypoint(so: SharedObject, dill):
     # keep count of open plots and close on ctrl-c
     try:
-        func = loads(func_dill)
-        stack, args, kwargs = loads(akw_args_dill)
+        func, stack, args, kwargs = loads(dill)
         with so.lock:
             so.openPlots.value = so.openPlots.value + (2 if so.openPlots.value < 0 else 1)
 

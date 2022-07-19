@@ -7,7 +7,7 @@ from typing import Union
 import miniaudio
 import numpy as np
 
-from ._util import SharedObject, dumps, loads, UrlFile, show_error_box, AudioProcessException
+from ._util import SharedObject, UrlFile, show_error_box, AudioProcessException
 
 import soundfile
 import threading

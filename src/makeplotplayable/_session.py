@@ -12,26 +12,20 @@ from typing import Optional, Union, List
 import numpy as np
 import soundfile as sf
 
+from dill import dumps, HANDLE_FMODE
 from ._audioProcess import audio_process_entrypoint
 from ._plotProcess import plot_process_entrypoint
-from ._util import SharedObject, dumps, UrlFile, runs_in_notebook, AudioProcessException, \
+from ._util import SharedObject, UrlFile, runs_in_notebook, AudioProcessException, \
     PlotProcessException
+
 
 def _plot_process_start_helper(func, so, stack, args, kwargs):
     # pickle with dill to increase compatibility (now works in ipy on Windows)
-    func_dill = dumps(func)
-    akw_args_dill = dumps((stack, args, kwargs))
+    dill = dumps((func, stack, args, kwargs), byref=False, recurse=True, protocol=-1, fmode=HANDLE_FMODE)
 
-    try:
-        p = Process(target=plot_process_entrypoint, args=(so, func_dill, akw_args_dill))
-        p.daemon = True
-        p.start()
-
-    # dill is somewhat optional (but is a requirement of this packet)
-    except AttributeError as e:
-        if "test" == dumps("test"):
-            print("Installing dill may help, or check the limitations for multiprocessing", file=sys.stderr)
-        raise e
+    p = Process(target=plot_process_entrypoint, args=(so, dill))
+    p.daemon = True
+    p.start()
 
 
 class Session:

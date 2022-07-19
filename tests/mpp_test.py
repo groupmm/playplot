@@ -14,7 +14,7 @@ from RangeHTTPServer import RangeRequestHandler
 
 from src.makeplotplayable import *
 
-from example_data import simple_audio_file, simple_annotations_file, long_audio_file
+from examples.example_data import simple_audio_file, simple_annotations_file, long_audio_file
 
 sr = 48000
 annotations = np.genfromtxt(simple_annotations_file, delimiter=',')

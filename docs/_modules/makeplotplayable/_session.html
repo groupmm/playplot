@@ -87,26 +87,20 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">soundfile</span> <span class="k">as</span> <span class="nn">sf</span>
 
+<span class="kn">from</span> <span class="nn">dill</span> <span class="kn">import</span> <span class="n">dumps</span><span class="p">,</span> <span class="n">HANDLE_FMODE</span>
 <span class="kn">from</span> <span class="nn">._audioProcess</span> <span class="kn">import</span> <span class="n">audio_process_entrypoint</span>
 <span class="kn">from</span> <span class="nn">._plotProcess</span> <span class="kn">import</span> <span class="n">plot_process_entrypoint</span>
-<span class="kn">from</span> <span class="nn">._util</span> <span class="kn">import</span> <span class="n">SharedObject</span><span class="p">,</span> <span class="n">dumps</span><span class="p">,</span> <span class="n">UrlFile</span><span class="p">,</span> <span class="n">runs_in_notebook</span><span class="p">,</span> <span class="n">AudioProcessException</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">._util</span> <span class="kn">import</span> <span class="n">SharedObject</span><span class="p">,</span> <span class="n">UrlFile</span><span class="p">,</span> <span class="n">runs_in_notebook</span><span class="p">,</span> <span class="n">AudioProcessException</span><span class="p">,</span> \
     <span class="n">PlotProcessException</span>
+
 
 <span class="k">def</span> <span class="nf">_plot_process_start_helper</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">so</span><span class="p">,</span> <span class="n">stack</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
     <span class="c1"># pickle with dill to increase compatibility (now works in ipy on Windows)</span>
-    <span class="n">func_dill</span> <span class="o">=</span> <span class="n">dumps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-    <span class="n">akw_args_dill</span> <span class="o">=</span> <span class="n">dumps</span><span class="p">((</span><span class="n">stack</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
+    <span class="n">dill</span> <span class="o">=</span> <span class="n">dumps</span><span class="p">((</span><span class="n">func</span><span class="p">,</span> <span class="n">stack</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">),</span> <span class="n">byref</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">recurse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">fmode</span><span class="o">=</span><span class="n">HANDLE_FMODE</span><span class="p">)</span>
 
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">plot_process_entrypoint</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">so</span><span class="p">,</span> <span class="n">func_dill</span><span class="p">,</span> <span class="n">akw_args_dill</span><span class="p">))</span>
-        <span class="n">p</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-    <span class="c1"># dill is somewhat optional (but is a requirement of this packet)</span>
-    <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s2">&quot;test&quot;</span> <span class="o">==</span> <span class="n">dumps</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Installing dill may help, or check the limitations for multiprocessing&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="n">e</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">plot_process_entrypoint</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">so</span><span class="p">,</span> <span class="n">dill</span><span class="p">))</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
 
 <div class="viewcode-block" id="Session"><a class="viewcode-back" href="../../api.html#makeplotplayable.Session">[docs]</a><span class="k">class</span> <span class="nc">Session</span><span class="p">:</span>

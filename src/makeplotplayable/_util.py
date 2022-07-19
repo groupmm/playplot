@@ -1,16 +1,7 @@
-import os.path
-import threading
 import urllib.request
 from multiprocessing import Value, Lock, Queue
 
-# dill is optional if not present try pickle
-
-# noinspection PyBroadException
-try:
-    from dill import dumps, loads
-except Exception:
-    def dumps(x): return x
-    def loads(x): return x
+import PyQt5.QtWidgets
 
 
 class SharedObject:
@@ -73,15 +64,9 @@ class UrlFile:
         self.sock.close()
 
 
-def show_error_box(text):
-    from PyQt5.QtWidgets import QMessageBox, QApplication
-    app = QApplication([])
-    msg = QMessageBox()
-    msg.setIcon(QMessageBox.Critical)
-    msg.setText("An error occurred")
-    msg.setInformativeText(text)
-    msg.setWindowTitle("Plotting Error")
-    msg.exec_()
+def show_error_box(text: str):
+    from PyQt5.QtWidgets import QMessageBox
+    QMessageBox.critical(None, "Plotting Error", text)
 
 
 def runs_in_notebook() -> bool:

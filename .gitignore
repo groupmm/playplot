@@ -5,9 +5,7 @@ venv
 dist
 build
 tests/_trial_temp
+*.pck
 
-example_data
-!example_data/__init__.py
-
-!example_data/simple_annotations.csv
-!example_data/simple_audio.wav
+examples/example_data
+!examples/example_data/__init__.py
