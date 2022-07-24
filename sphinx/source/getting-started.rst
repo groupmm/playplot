@@ -89,7 +89,7 @@ the top of the file We always need to wrap souch function manually
 -  Second case: The function is anywhere else, (e.g. in a notebook a
    main function)
 
-   The function will get called without any outer context. So we can’t
+   The function will get called without any outer context. So we can't
    use anything outside our function. We either need to pass it as an
    argument (e.g. other functions in our notebook), or we need to import
    it from inside the plotting function.
@@ -119,7 +119,7 @@ value of the wrapped function is always None)
 
 -  None:
 
-   The plot won’t get a curser, it will be simply shown. It won’t
+   The plot won't get a curser, it will be simply shown. It won't
    interact with the session (besides stop events)n
 
 -  Figure, Axes:
@@ -142,16 +142,16 @@ the default value.
 Parameters
 ~~~~~~~~~~
 
--  “title”: The Title of the Window
+-  "title": The Title of the Window
 
-   -  Default: “Fig”
+   -  Default: "Fig"
 
--  “axvline_kwargs”: The keyword arguments used to create the axvline
+-  "axvline_kwargs": The keyword arguments used to create the axvline
 
-   -  Default: {“alpha”: 0.9, “ls”: ‘–’, “color”: ‘r’, “lw”: 1,
-      “zorder”: 10}
+   -  Default: {"alpha": 0.9, "ls": '–', "color": 'r', "lw": 1,
+      "zorder": 10}
 
--  “mapping”: Linear interpolated mapping between, time in the audio and
+-  "mapping": Linear interpolated mapping between, time in the audio and
    x-axis position. A Numpy array in the shape (n,2). e.g. [[time_0,
    pos_0], [time_1, pos_1], …, [time_n-1, pos_n-1]] Out of bounds values
    will get clamped. Time and position are required to rise STRONGLY
@@ -161,55 +161,55 @@ Parameters
 
    -  Default: linear mapping from beginning to end
 
--  “window_pos”: the position, where the window should open. (array like
+-  "window_pos": the position, where the window should open. (array like
    with two integers)
 
    -  Default: None (matplotlib default)
 
--  “custom_time_to_pos_function”: Function to convert the time (point in
+-  "custom_time_to_pos_function": Function to convert the time (point in
    the audio) into a position on the axes x-axis
 
    -  Default: function based on the mapping param
 
--  “custom_pos_to_time_function”: Function to convert the position (on
+-  "custom_pos_to_time_function": Function to convert the position (on
    the axes x-axis) into a time in the audio
 
    -  Default: function based on the mapping param
 
--  “artists”: list of matplotlib artists to animate. Requires the param
-   “draw_function” to be set. Setting an element like a line here, will
+-  "artists": list of matplotlib artists to animate. Requires the param
+   "draw_function" to be set. Setting an element like a line here, will
    allow faster updates, if the element is interactive. See the
    matplotlib documentation for more information about artists.
 
--  “draw_function”: function that allows custom interactive elements.
-   Requires the param “artists” to be set. This function will get called
+-  "draw_function": function that allows custom interactive elements.
+   Requires the param "artists" to be set. This function will get called
    once per frame with (time:float,pos:float,paused:bool). Here you can
-   modify all the artists you defined in “artists”, to animate them. The
+   modify all the artists you defined in "artists", to animate them. The
    function expects a bool for the return type, stating if the artists
    should be redrawn.
 
--  “overrider_update_function”: setting this function disables the
+-  "overrider_update_function": setting this function disables the
    cursor and navigation. (the draw function still works) This function
    will get called once per frame (prior to draw_function) with
    (time:float,pos:float,paused:bool). It is ment to update time/pos and
    the paused state. The function is expected to return a tuple of the
    form (time/pos, paused). time/paused is the new value for ether time
    or pos depending on the param
-   “overrider_update_function_returns_pos”. paused is bool describing
+   "overrider_update_function_returns_pos". paused is bool describing
    the new paused state
 
--  “overrider_update_function_returns_pos”: does the
-   “overrider_update_function” return a position. Only used if
-   “overrider_update_function” is defined. True:
-   “overrider_update_function” returns (pos, paused) False:
-   “overrider_update_function” returns (time, paused)
+-  "overrider_update_function_returns_pos": does the
+   "overrider_update_function" return a position. Only used if
+   "overrider_update_function" is defined. True:
+   "overrider_update_function" returns (pos, paused) False:
+   "overrider_update_function" returns (time, paused)
 
    -  Default: False
 
 User interaction
 ----------------
 
--  Navigation: Don’t be in pan or zoom mode and simply click (or drag)
+-  Navigation: Don't be in pan or zoom mode and simply click (or drag)
    while pressing the left or right mouse button
 
    Right mouse button will pause
