@@ -110,7 +110,6 @@ class AudioFileReaderThread(threading.Thread):
 
 class Playback:
     def __init__(self, so: SharedObject, x: Union[str, np.ndarray], sr):
-
         self.so = so
 
         self.duration = so.duration
@@ -304,14 +303,18 @@ def audio_process_entrypoint(so: SharedObject, x, sr, stack):
         if so.show_msg_box_on_error_in_other_process:
             # noinspection PyBroadException
             try:
+                print("a")
                 show_error_box(str(exc))
+                print("b")
             except Exception:
                 pass
 
         with so.lock:
-            pass
             so.error_queue_size.value += 1
             so.total_error_count.value += 1
             so.error_queue.put(exc)
+            so.stop.value = True
+
+        print("c")
 
 
