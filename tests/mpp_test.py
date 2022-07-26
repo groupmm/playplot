@@ -234,7 +234,7 @@ class PlotTests(TestCaseHelper):
                 return time, new_paused
 
             return fig, ax, {"title": "test_draw",
-                             "overrider_update_function": update_func,
+                             "override_update_function": update_func,
                              "custom_time_to_pos_function": lambda time: time / 2}
 
         plot(annotations)

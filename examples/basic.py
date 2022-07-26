@@ -1,5 +1,3 @@
-import time
-
 import numpy as np
 import matplotlib.pyplot as plt
 from makeplotplayable import Session
@@ -52,6 +50,7 @@ def main01():
     session01.join()
     # check for exceptions from the other processes
     session01.check()
+
 
 def plot_waveform():
     # create figure and axis

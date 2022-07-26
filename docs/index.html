@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Make Plot Playable Documentation &mdash; make-plot-playable 0.0.2 documentation</title>
+  <title>Make Plot Playable &mdash; make-plot-playable 0.0.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -64,7 +64,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>Make Plot Playable Documentation</li>
+      <li>Make Plot Playable</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -98,23 +98,30 @@
     text-align: unset;
 }
 </style>
-<section id="make-plot-playable-documentation">
-<h1>Make Plot Playable Documentation<a class="headerlink" href="#make-plot-playable-documentation" title="Permalink to this heading">¶</a></h1>
+<section id="make-plot-playable">
+<h1>Make Plot Playable<a class="headerlink" href="#make-plot-playable" title="Permalink to this heading">¶</a></h1>
+<p>The home for the documentation of a Python package called Make Plot Playable,
+which provides the ability to create and sync multiple interactive matplotlib plots to a piece of audio.
+Each plot is handled in its one process, allowing smooth animations without a blocking main thread/process.
+This package works great inside interactive notebooks, with the limitations, that plots are shown on the machine
+where the kernel runs.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html#make-plot-playable">Make Plot Playable</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#simple-example">Simple Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#minimal-example">Minimal Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#how-to-wrap-a-plotting-function">How to wrap a plotting function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#multiprocessing-limitations">Multiprocessing limitations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#creating-sessions">Creating Sessions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#more-about-plot-function-return-values">More about plot function return values</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#plot-parameters">Plot Parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#user-interaction">User interaction</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Api Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="the-plot-function.html">The Plotting Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-plot-function.html">The Plotting Function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="the-plot-function.html#plot-function-return-values">Plot function return values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="the-plot-function.html#plot-parameters">Plot Parameters</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="exception-handling.html">Exception Handling</a></li>
 </ul>
 </div>
@@ -124,6 +131,16 @@
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 </div>
+<section id="licence">
+<h2>Licence<a class="headerlink" href="#licence" title="Permalink to this heading">¶</a></h2>
+<p>The code for this package is published under an MIT licence.
+This does not apply to the data files in <code class="docutils literal notranslate"><span class="pre">examples/example_data</span></code>.</p>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this heading">¶</a></h2>
+<p>The International Audio Laboratories Erlangen, which are a joint institution of the Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU) and Fraunhofer Institute for Integrated Circuits IIS.
+We also thank the German Research Foundation (DFG) for various research grants that allowed us for conducting fundamental research in music processing.</p>
+</section>
 </section>
 
 

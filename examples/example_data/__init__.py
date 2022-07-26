@@ -3,17 +3,32 @@ import numpy as np
 __base_path = os.path.abspath(os.path.dirname(__file__))
 
 simple_audio_file = os.path.join(__base_path, "simple_audio.wav")
-simple_annotations_file = os.path.join(__base_path, "simple_annotations.csv")  # two columns of data
+# any wave file
 
-long_audio_file = os.path.join(__base_path, "long_audio.wav")  # time > 30 min for streaming examples
+simple_annotations_file = os.path.join(__base_path, "simple_annotations.csv")
+# annotations to said wave file
+# two columns (strongly monotonic rising)
+# first column: time in audio file
+# second column: mapped position (arbitrary)
+# example for an audio file of 60s:
+# 0.0,0
+# 60.0,1
+
+long_audio_file = os.path.join(__base_path, "long_audio.wav")
+# long wav file for streaming example (only for advanced)
 
 video_file = os.path.join(__base_path, "video.mp4")
-audio_to_video_file = os.path.join(__base_path, "video.wav")  # same length as video
+# a (monochrome video file, audio will be ignored) (only for advanced)
+audio_to_video_file = os.path.join(__base_path, "video.wav")
+# audio file to the video (only for advanced)
+# the file should have the same length as the video
 
-url_audio_example = "https://bigsoundbank.com/UPLOAD/wav/0100.wav"  # url to an audio file
+url_audio_example = "https://bigsoundbank.com/UPLOAD/wav/0100.wav"
+# url (http) to an audio file (only for intermediate)
 
+
+# automatic caching
 _example_a_file = os.path.join(__base_path, "example_a.npz")
-
 
 example_a_sr = 48000
 

@@ -76,6 +76,8 @@
 <span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">Queue</span>
 
+<span class="kn">import</span> <span class="nn">PyQt5.QtWidgets</span>
+
 
 <span class="k">class</span> <span class="nc">SharedObject</span><span class="p">:</span>
 
@@ -137,15 +139,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">show_error_box</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">show_error_box</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QMessageBox</span><span class="p">,</span> <span class="n">QApplication</span>
     <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">([])</span>
-    <span class="n">msg</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="p">()</span>
-    <span class="n">msg</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>
-    <span class="n">msg</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;An error occurred&quot;</span><span class="p">)</span>
-    <span class="n">msg</span><span class="o">.</span><span class="n">setInformativeText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">msg</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Plotting Error&quot;</span><span class="p">)</span>
-    <span class="n">msg</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+    <span class="n">QMessageBox</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Plotting Error&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 
 
 <span class="k">def</span> <span class="nf">runs_in_notebook</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>

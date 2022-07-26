@@ -185,11 +185,11 @@ class MPP:
             params["artists"] = []
             params["draw_function"] = lambda *args, **kwargs: False
 
-        if "overrider_update_function" not in params:
-            params["overrider_update_function"] = None
+        if "override_update_function" not in params:
+            params["override_update_function"] = None
 
-        if "overrider_update_function_returns_pos" not in params:
-            params["overrider_update_function_returns_pos"] = False
+        if "override_update_function_returns_pos" not in params:
+            params["override_update_function_returns_pos"] = False
 
         if "window_pos" not in params:
             params["window_pos"] = None
@@ -217,7 +217,7 @@ class MPP:
         if params["window_pos"] is not None:
             self.fig.canvas.manager.window.move(params["window_pos"][0], params["window_pos"][1])
 
-        if params["overrider_update_function"] is None:
+        if params["override_update_function"] is None:
             fig.canvas.mpl_connect('key_press_event', self.on_key)
             fig.canvas.mpl_connect('button_release_event', self.on_release)
             fig.canvas.mpl_connect('button_press_event', self.on_click)
@@ -257,7 +257,7 @@ class MPP:
             gui_update_necessary = False
             pos = self.time_to_pos(time)
 
-            if self.params["overrider_update_function"] is None:
+            if self.params["override_update_function"] is None:
                 if last_time != time or self.hidden != last_hidden:
                     self.artists[0].set_xdata([pos, pos])
                     self.artists[0].set(visible=not self.hidden)
@@ -266,11 +266,11 @@ class MPP:
                     gui_update_necessary = True
 
             else:
-                new_time_or_pos, new_paused = self.params["overrider_update_function"](time, pos, bool(paused))
+                new_time_or_pos, new_paused = self.params["override_update_function"](time, pos, bool(paused))
                 assert isinstance(new_time_or_pos, float), "the new time must be a float"
                 assert isinstance(new_paused, bool), "the new paused must be a bool"
                 time_or_pos_changed = new_time_or_pos != time
-                if self.params["overrider_update_function_returns_pos"]:
+                if self.params["override_update_function_returns_pos"]:
                     time_or_pos_changed = new_time_or_pos != pos
                     new_time_or_pos = self.map_pos_to_time(new_time_or_pos)
 
@@ -375,6 +375,9 @@ def plot_process_entrypoint(so: SharedObject, dill):
 
 
 class BlitManager:
+    """
+    From: https://matplotlib.org/stable/tutorials/advanced/blitting.html
+    """
     def __init__(self, canvas, animated_artists=()):
         """
         Parameters
