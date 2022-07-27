@@ -1,5 +1,6 @@
 The Plotting Function
 =====================
+.. _plotting_details:
 
 The plot function is the callable which gets wrapped by a Session instance.
 

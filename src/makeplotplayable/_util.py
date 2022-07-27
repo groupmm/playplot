@@ -66,9 +66,10 @@ class UrlFile:
 
 def show_error_box(text: str):
     from PyQt5.QtWidgets import QMessageBox, QApplication
-    app = QApplication([])
+    if not QApplication.instance():
+        _ = QApplication([])
     QMessageBox.critical(None, "Plotting Error", text)
-    app.quit()
+
 
 
 def runs_in_notebook() -> bool:

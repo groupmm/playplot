@@ -282,39 +282,39 @@ class Playback:
 
 # audioProcess entry point
 def audio_process_entrypoint(so: SharedObject, x, sr, stack):
-    # noinspection PyBroadException
-    try:
-        try:
-            pb = Playback(so, x, sr)
-        except KeyboardInterrupt:
-            return
 
-        try:
-            pb.loop()
-        except KeyboardInterrupt:
-            pass
-        finally:
-            pb.close()
-
-    except Exception as e:
-        exc = AudioProcessException(e, traceback.format_exc(), stack)
+    def handle_exception(exc_type, exc_value, exc_traceback):
+        sys.excepthook = sys.__excepthook__
+        traceback.format_exc()
+        exc = AudioProcessException(exc_value,
+                                    "".join(traceback.format_exception(exc_type, exc_value, exc_traceback)),
+                                    stack)
         print(f"Audio Process {'-'*(100-14)}\n{exc}{'-'*100}", file=sys.stderr)
 
         if so.show_msg_box_on_error_in_other_process:
             # noinspection PyBroadException
             try:
-                print("a")
                 show_error_box(str(exc))
-                print("b")
             except Exception:
                 pass
 
         with so.lock:
-            so.error_queue_size.value += 1
-            so.total_error_count.value += 1
-            so.error_queue.put(exc)
             so.stop.value = True
+            if not issubclass(exc_type, KeyboardInterrupt):
+                so.error_queue_size.value += 1
+                so.total_error_count.value += 1
+                so.error_queue.put(exc)
 
-        print("c")
+        exit(0 if issubclass(exc_type, KeyboardInterrupt) else 1)
+
+    sys.excepthook = handle_exception
+
+    # noinspection PyBroadException
+    try:
+        pb = Playback(so, x, sr)
+        pb.loop()
+        pb.close()
+    except Exception:
+        handle_exception(*sys.exc_info())
 
 

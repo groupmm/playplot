@@ -342,20 +342,13 @@ def plot_process_entrypoint(so: SharedObject, dill):
     except KeyboardInterrupt:
         return
 
-    # noinspection PyBroadException
-    try:
-        func_ret = call_func(func, args, kwargs)
-        if func_ret is None:
-            plt.show(block=True)
-        else:
-            mpp = MPP(*func_ret, so=so)
-            mpp.loop()
-
-    except KeyboardInterrupt:
-        pass
-    except Exception as e:
-        exc = PlotProcessException(e, traceback.format_exc(), stack)
-        print(f"Plot Process {'-'*(100-13)}\n{exc}{'-'*100}", file=sys.stderr)
+    def handle_exception(exc_type, exc_value, exc_traceback):
+        sys.excepthook = sys.__excepthook__
+        traceback.format_exc()
+        exc = PlotProcessException(exc_value,
+                                   "".join(traceback.format_exception(exc_type, exc_value, exc_traceback)),
+                                   stack)
+        print(f"Plot Process {'-' * (100 - 13)}\n{exc}{'-' * 100}", file=sys.stderr)
 
         if so.show_msg_box_on_error_in_other_process:
             # noinspection PyBroadException
@@ -365,13 +358,29 @@ def plot_process_entrypoint(so: SharedObject, dill):
                 pass
 
         with so.lock:
-            so.error_queue_size.value += 1
-            so.total_error_count.value += 1
-            so.error_queue.put(exc)
+            so.openPlots.value -= 1
+            if not issubclass(exc_type, KeyboardInterrupt):
+                so.error_queue_size.value += 1
+                so.total_error_count.value += 1
+                so.error_queue.put(exc)
 
-    finally:
+        exit(0 if issubclass(exc_type, KeyboardInterrupt) else 1)
+
+    sys.excepthook = handle_exception
+
+    # noinspection PyBroadException
+    try:
+        func_ret = call_func(func, args, kwargs)
+        if func_ret is None:
+            plt.show(block=True)
+        else:
+            mpp = MPP(*func_ret, so=so)
+            mpp.loop()
+
         with so.lock:
             so.openPlots.value -= 1
+    except Exception:
+        handle_exception(*sys.exc_info())
 
 
 class BlitManager:
