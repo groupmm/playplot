@@ -2,7 +2,7 @@
 
 This repository contains a Python package called Make Plot Playable, 
 which provides the ability to create and sync multiple interactive matplotlib plots to a piece of audio.
-Each plot is handled in its one process, allowing smooth animations without a blocking main thread/process.
+Each plot is handled in its own process, allowing smooth animations without a blocking main thread/process.
 This package works great inside interactive notebooks, with the limitations, that plots are shown on the machine
 where the kernel runs.
 
@@ -33,13 +33,13 @@ For a development installation run ```pip install -e .```
 For examples see the `examples` folder of this repository.
 These examples need some data to function properly (except ``minimal``)
 
-These files are not provided.
+Those files are not provided.
 See ``examples/example_data/__init__.py`` for which files are required for specific examples. 
 Members of the Audiolabs can find the missing files on lin2 under ``/GroupMM/Students/Work_DK/example_data/``
 
-All examples are currently work in progress and my change drastically.
+All examples are currently work in progress and might change drastically.
 The ``minimal`` and ``basic`` examples don't have additional dependencies.
-``minimal`` doesnt require any extra files.
+``minimal`` doesn't require any extra files.
 All files necessary for ``basic`` will be part of the repo.
 ``intermediate`` and ``advanced`` are WIP (working but suboptimal)
 
@@ -49,7 +49,7 @@ All files necessary for ``basic`` will be part of the repo.
 import matplotlib.pyplot as plt
 from makeplotplayable import Session
 
-# crate a Session from the audio data (url not final)
+# create a Session from the audio data (url not final)
 session = Session.from_file("https://github.com/meinardmueller/synctoolbox/blob/master/data_music/Schubert_D911-01_HU33.wav?raw=true")
 
 # decorate the plot function with the session
@@ -80,12 +80,12 @@ They mostly focus the process managing and error handling.
 
 ### Docs
 
-The documentation is build with sphinx. 
-And is hosted on GitHub Pages.
+The documentation is built with sphinx.
+It is hosted on GitHub Pages.
 
 ## Contributing
 I am happy for suggestions and contributions.
-I would be grateful for creating an issue in this Github repository.
+I would be grateful for creating an issue in this GitHub repository.
 Please do not submit a pull request without prior consultation with me.
 
 ## Licence

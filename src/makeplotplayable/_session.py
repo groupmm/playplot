@@ -61,7 +61,7 @@ class Session:
         looping
             restart at the beginning after the end is reached
         show_msg_box_on_error_in_other_process
-            show a message box if an error occurs, useful if now explicit error handling is performed.
+            show a message box if an error occurs, useful if no explicit error handling is performed.
             on by default if running in an interactive context.
             (in jupyter notebooks the stderr is not shown)
 
@@ -125,7 +125,7 @@ class Session:
         looping
             restart at the beginning after the end is reached
         show_msg_box_on_error_in_other_process
-            show a message box if an error occurs, useful if now explicit error handling is performed.
+            show a message box if an error occurs, useful if no explicit error handling is performed.
             on by default if running in an interactive context.
             (in jupyter notebooks the stderr is not shown)
         """

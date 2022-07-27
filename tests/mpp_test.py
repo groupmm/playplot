@@ -11,9 +11,11 @@ from urllib.error import URLError
 import libfmp.b as lfb
 import numpy as np
 from RangeHTTPServer import RangeRequestHandler
+import sys
+
+sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), ".."))
 
 from src.makeplotplayable import *
-
 from examples.example_data import simple_audio_file, simple_annotations_file, long_audio_file
 
 sr = 48000
@@ -174,7 +176,7 @@ class AudioPlaybackTestsForFile(TestCaseHelper):
 
         # file not audio file
         with self.assertRaises(RuntimeError):
-            Session.from_file('mpp_test.py')
+            Session.from_file(__file__)
 
     def test_url_missing(self):
         print("ConnectionResetErrors are normal")
@@ -213,7 +215,6 @@ class AudioPlaybackTestsForFile(TestCaseHelper):
 
 class PlotTests(TestCaseHelper):
     def test_update_function(self):
-
         session = Session(audio, sr)
         session.start()
 

@@ -3,7 +3,7 @@ from makeplotplayable import Session
 
 if __name__ == "__main__":
 
-    # crate a Session from the audio data (url not final)
+    # create a Session from the audio data (url not final)
     session = Session.from_file("https://github.com/meinardmueller/synctoolbox/blob/master/data_music/Schubert_D911-01_HU33.wav?raw=true")
 
     # decorate the plot function with the session
