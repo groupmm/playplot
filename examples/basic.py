@@ -85,7 +85,7 @@ def main02():
     session02.time = 10
 
     # create a wrapped version of the plot function with the help os the session
-    plot_wraped = session02(plot_waveform)
+    plot_wrapped = session02(plot_waveform)
 
     # wrap with decorator and add functionality
     @session02
@@ -96,7 +96,7 @@ def main02():
     plot_waveform()
 
     # call the wrapped function
-    plot_wraped()
+    plot_wrapped()
 
     # call the new decorated function with extra kwargs
     plot_decorated(title="A02 Decorated", window_pos=(64, 64), axvline_kwargs={"alpha": 0.5, "ls": "--", "color": "c", "lw": 2, "zorder": 10})

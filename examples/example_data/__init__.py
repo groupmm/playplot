@@ -23,9 +23,6 @@ audio_to_video_file = os.path.join(__base_path, "video.wav")
 # audio file to the video (only for advanced)
 # the file should have the same length as the video
 
-url_audio_example = "https://bigsoundbank.com/UPLOAD/wav/0100.wav"
-# url (http) to an audio file (only for intermediate)
-
 
 # automatic caching
 _example_a_file = os.path.join(__base_path, "example_a.npz")

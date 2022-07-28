@@ -61,12 +61,12 @@ It is done simply by calling the Session instance with the function
 
 Multiprocessing limitations
 ---------------------------
-To be able to plot efficiently (and in interactive session at all), we need
-to use multiprocessing, to run each plot in its own process.
+To be able to plot efficiently (in an interactive session at all), we need
+to use multiprocessing to run each plot in its own process.
 So we need to run our plotting functions in different processes.
-The main process/thread does not block.
+So the main process/thread does not block.
 
-This is generally transparent to the user, but it complicates things like
+This is generally transparent to the user but it complicates things like
 exception handling.
 
 It works well in interactive sessions like in a jupyter notebook.
@@ -78,13 +78,13 @@ Creating Sessions
 -----------------
 
 Multiple Sessions can be created. Each Session can have multiple plots
-(theoretically non also). All plots can come from the same or different
+(theoretically also none). All plots can come from the same or different
 plotting functions.
 
 Sessions can either be created with a numpy array (mono or stereo)
 (Session constructor) or from a file with the help of soundfile
 (Session.from_file).
-The file can ether be a file path or a http(s) url.
+The file can either be a file path or a http(s) url.
 The file will get streamed.
 
 For more details about the Session see the api documentation.

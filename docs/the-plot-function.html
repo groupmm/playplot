@@ -112,24 +112,26 @@
 <p id="plotting-details">The plot function is the callable which gets wrapped by a Session instance.</p>
 <p>Any args and kwargs are allowed, and variables from outer scopes can be used,
 which can be transferred to the plotting process.</p>
-<p>This limitation effects few objects we may on to use (dont use file descriptors or whole application instances).
-Notable is the Session instance itself, which is not usable inside the plotting function.</p>
+<p>This limitation affects few objects we may want to use (dont use file descriptors or whole application instances).
+Notable is the Session instance itself, which is not usable inside the plotting function.
+It is also is not possible to pass in an already created plot/figure.
+Figures must be created inside the plotting function.</p>
 <section id="plot-function-return-values">
 <h2>Plot function return values<a class="headerlink" href="#plot-function-return-values" title="Permalink to this heading">¶</a></h2>
 <p>Plot functions can return three different kinds of output.
 (The return value of the wrapped function is always None)</p>
 <ul>
 <li><p>None:</p>
-<p>The plot won’t get a curser, it will be simply shown. It won’t
+<p>The plot won’t get a cursor, it will simply be shown. It won’t
 interact with the session (no real reason to use it).</p>
 </li>
 <li><p>Figure, Axes:</p>
-<p>The plot will be interactive. The curser will get added to the axes
-(axvline). Navigation will be enabled. The time of the audi clip will
+<p>The plot will be interactive. The cursor will get added to the axes
+(axvline). Navigation will be enabled. The time of the audio clip will
 get mapped to the limits of the axes.</p>
 </li>
 <li><p>Figure, Axes, Dict:</p>
-<p>To configer the plot, we can pass a dict with additional parameters.</p>
+<p>To configure the plot, we can pass a dict with additional parameters.</p>
 </li>
 </ul>
 </section>
@@ -158,7 +160,7 @@ the default value.</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">window_pos</span></code>:</dt><dd><p>the position, where the window should open. (array like
+<dt><code class="docutils literal notranslate"><span class="pre">window_pos</span></code>:</dt><dd><p>The position, where the window should open. (array like
 with two integers)</p>
 <ul class="simple">
 <li><p>Default: None (matplotlib default)</p></li>
@@ -169,12 +171,12 @@ with two integers)</p>
 <li><dl>
 <dt><code class="docutils literal notranslate"><span class="pre">mapping</span></code>:</dt><dd><p>Linear interpolated mapping between, time in the audio playback and
 the x-axis position.</p>
-<p>Two mapping types are available, a sparce mapping, containing pairs of times and corresponding positions
+<p>Two mapping types are available, a sparse mapping, containing pairs of times and corresponding positions
 and a dense mapping giving a time to each feature.</p>
 <ul class="simple">
 <li><dl class="simple">
-<dt>Sparce mapping:</dt><dd><p>This mapping neads to be passed as a numpy array in the shape (n,2).
-Time and position values</p>
+<dt>Sparse mapping:</dt><dd><p>This mapping needs to be passed as a numpy array in the shape (n,2).
+Time and position values.</p>
 </dd>
 </dl>
 </li>
@@ -216,16 +218,15 @@ the axes x-axis) into a time in the audio</p>
 </li>
 <li><dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">artists</span></code>:</dt><dd><p>List of matplotlib artists to animate. Requires the param
-<code class="docutils literal notranslate"><span class="pre">draw_function</span></code> to be set. Setting an element like a line here, will
-allow faster updates, if the element is interactive. See the
-matplotlib documentation for more information about artists.</p>
+<code class="docutils literal notranslate"><span class="pre">draw_function</span></code> to be set. Setting an element like a line here, allows faster updates, if the element is interactive.
+See the matplotlib documentation for more information about artists.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">draw_function</span></code>:</dt><dd><p>Function that allows custom interactive elements.
-Requires the param “artists” to be set. This function will get called
-once per frame with (time:float,pos:float,paused:bool). Here you can
+Requires the param <code class="docutils literal notranslate"><span class="pre">artists</span></code> to be set. This function will get called
+once per frame with (time: float, pos: float, paused: bool). Here you can
 modify all the artists you defined in “artists”, to animate them. The
 function expects a bool for the return type, signaling if the artists
 should be redrawn.</p>
@@ -236,9 +237,9 @@ should be redrawn.</p>
 <dt><code class="docutils literal notranslate"><span class="pre">override_update_function</span></code>:</dt><dd><p>Setting this function disables the
 cursor and navigation. (the draw function still works) This function
 will get called once per frame (prior to draw_function) with
-(time:float,pos:float,paused:bool). It is ment to update time/pos and
+(time: float, pos: float, paused: bool). It is meant to update time/pos and
 the paused state. The function is expected to return a tuple of the
-form (time/pos, paused). time/paused is the new value for ether time
+form (time/pos, paused). time/paused is the new value for either time
 or pos depending on the param
 “override_update_function_returns_pos”. paused is a bool describing
 the new paused state.</p>
@@ -246,7 +247,7 @@ the new paused state.</p>
 </dl>
 </li>
 <li><dl>
-<dt><code class="docutils literal notranslate"><span class="pre">override_update_function_returns_pos</span></code>:</dt><dd><p>does the “override_update_function” return a position.
+<dt><code class="docutils literal notranslate"><span class="pre">override_update_function_returns_pos</span></code>:</dt><dd><p>Does the “override_update_function” return a position?
 Only used if “override_update_function” is defined.</p>
 <p>True: “override_update_function” returns (pos, paused)</p>
 <p>False: “override_update_function” returns (time, paused)</p>

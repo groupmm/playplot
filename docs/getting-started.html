@@ -162,11 +162,11 @@ original function should be preserved, or is already defined.</p>
 </section>
 <section id="multiprocessing-limitations">
 <h2>Multiprocessing limitations<a class="headerlink" href="#multiprocessing-limitations" title="Permalink to this heading">¶</a></h2>
-<p>To be able to plot efficiently (and in interactive session at all), we need
-to use multiprocessing, to run each plot in its own process.
+<p>To be able to plot efficiently (in an interactive session at all), we need
+to use multiprocessing to run each plot in its own process.
 So we need to run our plotting functions in different processes.
-The main process/thread does not block.</p>
-<p>This is generally transparent to the user, but it complicates things like
+So the main process/thread does not block.</p>
+<p>This is generally transparent to the user but it complicates things like
 exception handling.</p>
 <p>It works well in interactive sessions like in a jupyter notebook.
 (The plots will be opened on the machine the kernel runs on)</p>
@@ -175,12 +175,12 @@ exception handling.</p>
 <section id="creating-sessions">
 <h2>Creating Sessions<a class="headerlink" href="#creating-sessions" title="Permalink to this heading">¶</a></h2>
 <p>Multiple Sessions can be created. Each Session can have multiple plots
-(theoretically non also). All plots can come from the same or different
+(theoretically also none). All plots can come from the same or different
 plotting functions.</p>
 <p>Sessions can either be created with a numpy array (mono or stereo)
 (Session constructor) or from a file with the help of soundfile
 (Session.from_file).
-The file can ether be a file path or a http(s) url.
+The file can either be a file path or a http(s) url.
 The file will get streamed.</p>
 <p>For more details about the Session see the api documentation.</p>
 <p>Stopping a session will close all associated interactive plots, deleting

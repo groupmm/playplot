@@ -24,24 +24,22 @@ To run the examples locally and for development this repository is necessary.
 
 All additional dependencies can be found in `requirements.txt`
 
-For a development installation run ```pip install -e .```
+For a development installation run ```python -m pip install -e .```
 
 ## Usage
 
 ### Examples
 
 For examples see the `examples` folder of this repository.
-These examples need some data to function properly (except ``minimal``)
+These examples need some local data to function properly (except ``minimal``)
 
-Those files are not provided.
-See ``examples/example_data/__init__.py`` for which files are required for specific examples. 
+Those files are provided for all examples except for ``advanced``.
+See ``examples/example_data/__init__.py`` for which files are additionally required. 
 Members of the Audiolabs can find the missing files on lin2 under ``/GroupMM/Students/Work_DK/example_data/``
 
-All examples are currently work in progress and might change drastically.
 The ``minimal`` and ``basic`` examples don't have additional dependencies.
-``minimal`` doesn't require any extra files.
-All files necessary for ``basic`` will be part of the repo.
-``intermediate`` and ``advanced`` are WIP (working but suboptimal)
+``intermediate`` requires ``libfmp`` (can be installed via ``python -m pip install libfmp``)
+``advanced`` has the most dependencies. I recommend installing from the requirements.txt files. (``python -m pip install -r requirements.txt``) 
 
 #### Minimal Example
 
