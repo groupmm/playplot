@@ -71,7 +71,6 @@ def show_error_box(text: str):
     QMessageBox.critical(None, "Plotting Error", text)
 
 
-
 def runs_in_notebook() -> bool:
     try:
         # noinspection PyUnresolvedReferences

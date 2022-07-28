@@ -261,13 +261,21 @@ class Session:
             instance of :class:`~playplot.ForeignProcessException`
         PlotProcessException
             Raised in case some error occurred in a plot process associated with this session since the last check/retrieve_errors
-            instance of :class:`~ForeignProcessException`
+            instance of :class:`~playplot.ForeignProcessException`
         """
         error_list = self.retrieve_errors()
         if len(error_list) == 0:
             return
 
         raise error_list[0]
+
+    @property
+    def show_msg_box_on_error_in_other_process(self) -> bool:
+        """
+        Show msg box on error in other process.
+        Can be used to decide if main process should check for exceptions.
+        """
+        return self.__so.show_msg_box_on_error_in_other_process
 
     @property
     def paused(self) -> bool:
