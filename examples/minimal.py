@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from makeplotplayable import Session
+from playplot import Session
 
 if __name__ == "__main__":
 

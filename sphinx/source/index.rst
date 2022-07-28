@@ -1,7 +1,7 @@
-Make Plot Playable
+Playplot
 ==================
 
-The home for the documentation of a Python package called Make Plot Playable,
+The home for the documentation of a Python package called Playplot,
 which provides the ability to create and sync multiple interactive matplotlib plots to a piece of audio.
 Each plot is handled in its own process, allowing smooth animations without a blocking main thread/process.
 This package works great inside interactive notebooks, with the limitations, that plots are shown on the machine

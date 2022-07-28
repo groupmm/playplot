@@ -1,7 +1,7 @@
 Getting Started
 ===============
 
-Make Plot Playable
+Playplot
 ==================
 
 This module allows multiple interactive matplotlib plots to be created and synced to a
@@ -13,7 +13,7 @@ Minimal Example
 .. code:: python
 
     import matplotlib.pyplot as plt
-    from makeplotplayable import Session
+    from playplot import Session
 
     # crate a Session from the audio data (url not final)
     session = Session.from_file("https://github.com/meinardmueller/synctoolbox/blob/master/data_music/Schubert_D911-01_HU33.wav?raw=true")

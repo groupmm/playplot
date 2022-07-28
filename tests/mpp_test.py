@@ -15,7 +15,7 @@ import sys
 
 sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), ".."))
 
-from src.makeplotplayable import *
+from src.playplot import *
 from examples.example_data import simple_audio_file, simple_annotations_file, long_audio_file
 
 sr = 48000
@@ -118,7 +118,7 @@ class ProcessCreationTests(TestCaseHelper):
 
         del session
 
-    @patch('src.makeplotplayable._session._plot_process_start_helper')
+    @patch('src.playplot._session._plot_process_start_helper')
     def test_process_creation(self, mocked):
         session = Session(audio, sr)
 

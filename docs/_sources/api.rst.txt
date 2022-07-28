@@ -1,10 +1,10 @@
 Api Documentation
 =================
 
-.. autoclass:: makeplotplayable.Session
+.. autoclass:: playplot.Session
    :members:
    :special-members: __call__
 
-.. autoclass:: makeplotplayable.ForeignProcessException
-.. autoclass:: makeplotplayable.AudioProcessException
-.. autoclass:: makeplotplayable.PlotProcessException
+.. autoclass:: playplot.ForeignProcessException
+.. autoclass:: playplot.AudioProcessException
+.. autoclass:: playplot.PlotProcessException

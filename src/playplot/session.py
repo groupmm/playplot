@@ -258,7 +258,7 @@ class Session:
         ----------
         AudioProcessException
             Raised in case some error occurred in the audio process associated with this session since the last check/retrieve_errors
-            instance of :class:`~makeplotplayable.ForeignProcessException`
+            instance of :class:`~playplot.ForeignProcessException`
         PlotProcessException
             Raised in case some error occurred in a plot process associated with this session since the last check/retrieve_errors
             instance of :class:`~ForeignProcessException`

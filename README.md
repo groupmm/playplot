@@ -1,6 +1,6 @@
-# Make Plot Playable
+# Playplot
 
-This repository contains a Python package called Make Plot Playable, 
+This repository contains a Python package called Playplot, 
 which provides the ability to create and sync multiple interactive matplotlib plots to a piece of audio.
 Each plot is handled in its own process, allowing smooth animations without a blocking main thread/process.
 This package works great inside interactive notebooks, with the limitations, that plots are shown on the machine
@@ -10,21 +10,21 @@ where the kernel runs.
 ## References
 
 Daniel Keitel, Meinard Müller, Christof Weiß and Sebastian Rosenzweig.
-Make Plot Playable: A Python Package to Sync Matplotlib Plots to Audio.
+Playplot: A Python Package to Sync Matplotlib Plots to Audio.
 To be submitted to the Journal of Open Source Software (JOSS).
 
 ## Installing
 
 To use the library just install it via pip.
-```pip install make-plot-playable```
+```pip install playplot```
 
 To run the examples locally and for development this repository is necessary.
 
-```git clone https://github.com/daniel-keitel/make-plot-playable.git```
-
-All additional dependencies can be found in `requirements.txt`
+```git clone https://github.com/groupmm/playplot.git```
 
 For a development installation run ```python -m pip install -e .```
+
+All additional dependencies can be installed via ```python -m pip --r requirements.txt```
 
 ## Usage
 
@@ -45,7 +45,7 @@ The ``minimal`` and ``basic`` examples don't have additional dependencies.
 
 ```python
 import matplotlib.pyplot as plt
-from makeplotplayable import Session
+from playplot import Session
 
 # create a Session from the audio data (url not final)
 session = Session.from_file("https://github.com/meinardmueller/synctoolbox/blob/master/data_music/Schubert_D911-01_HU33.wav?raw=true")
@@ -92,5 +92,7 @@ The code for this package is published under an MIT licence.
 This does not apply to the data files in ``examples/example_data``.
 
 ## Acknowledgements
-The International Audio Laboratories Erlangen, which are a joint institution of the Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU) and Fraunhofer Institute for Integrated Circuits IIS. 
+This library was initially created for a project in my master's degree in computer science.
+Under the suppervision of Prof. Dr. Meinard Müller, Dr. Christof Weiß and (Dr.) Sebastian Rosenzweig at 
+the International Audio Laboratories Erlangen, which are a joint institution of the Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU) and Fraunhofer Institute for Integrated Circuits IIS. 
 We also thank the German Research Foundation (DFG) for various research grants that allowed us for conducting fundamental research in music processing.

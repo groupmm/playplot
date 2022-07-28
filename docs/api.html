@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Api Documentation &mdash; make-plot-playable 0.0.2 documentation</title>
+  <title>Api Documentation &mdash; playplot 0.0.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -29,8 +29,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> make-plot-playable
+            <a href="index.html">
+            <img src="_static/playplot.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.0.3
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -41,7 +45,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html#make-plot-playable">Make Plot Playable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#playplot">Playplot</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Api Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="the-plot-function.html">The Plotting Function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exception-handling.html">Exception Handling</a></li>
@@ -57,7 +61,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">make-plot-playable</a>
+          <a href="index.html">playplot</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -102,8 +106,8 @@
 <section id="api-documentation">
 <h1>Api Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="makeplotplayable.Session">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">makeplotplayable.</span></span><span class="sig-name descname"><span class="pre">Session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">close_with_last_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fps_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_min_sleep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">looping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_msg_box_on_error_in_other_process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/makeplotplayable/_session.html#Session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#makeplotplayable.Session" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">playplot.</span></span><span class="sig-name descname"><span class="pre">Session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">close_with_last_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fps_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_min_sleep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">looping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_msg_box_on_error_in_other_process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/playplot/session.html#Session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#playplot.Session" title="Permalink to this definition">¶</a></dt>
 <dd><p>A Session allows audio playback linked to multiple interactive matplotlib plots.
 These plots receive a curser and navigation functions,
 to visualize the point in the audio and allow for navigation.</p>
@@ -121,7 +125,7 @@ and call these wrapped function with your parameters to create the plots.</p>
 <li><p><strong>close_with_last_plot</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)) – after last plot was closed no new plots can be created and audio playback will stop</p></li>
 <li><p><strong>fps_target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">60</span></code>)) – target frames per seconds for plots</p></li>
 <li><p><strong>plot_min_sleep</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">0.001</span></code>)) – minimal time the plotting processes will yield for (default should suffice)</p></li>
-<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)) – start time <em>see:</em> <a class="reference internal" href="#makeplotplayable.Session.time" title="makeplotplayable.Session.time"><code class="xref py py-attr docutils literal notranslate"><span class="pre">time</span></code></a></p></li>
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)) – start time <em>see:</em> <a class="reference internal" href="#playplot.Session.time" title="playplot.Session.time"><code class="xref py py-attr docutils literal notranslate"><span class="pre">time</span></code></a></p></li>
 <li><p><strong>volume</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">0.8</span></code>)) – audio volume as sample scalar (0-1)</p></li>
 <li><p><strong>looping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)) – restart at the beginning after the end is reached</p></li>
 <li><p><strong>show_msg_box_on_error_in_other_process</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>] (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)) – show a message box if an error occurs, useful if no explicit error handling is performed.
@@ -131,8 +135,8 @@ on by default if running in an interactive context.
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="makeplotplayable.Session.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/makeplotplayable/_session.html#Session.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#makeplotplayable.Session.__call__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/playplot/session.html#Session.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#playplot.Session.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to wrap plotting function to use with Session.</p>
 <p>Possible use cases:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotFunc</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="n">kwargs</span><span class="p">):</span>
@@ -171,30 +175,30 @@ on by default if running in an interactive context.
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="makeplotplayable.Session.check">
-<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/makeplotplayable/_session.html#Session.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#makeplotplayable.Session.check" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/playplot/session.html#Session.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#playplot.Session.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if something went wrong in another process.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference internal" href="#makeplotplayable.AudioProcessException" title="makeplotplayable.AudioProcessException"><strong>AudioProcessException</strong></a> – Raised in case some error occurred in the audio process associated with this session since the last check/retrieve_errors
-    instance of <a class="reference internal" href="#makeplotplayable.ForeignProcessException" title="makeplotplayable.ForeignProcessException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignProcessException</span></code></a></p></li>
-<li><p><a class="reference internal" href="#makeplotplayable.PlotProcessException" title="makeplotplayable.PlotProcessException"><strong>PlotProcessException</strong></a> – Raised in case some error occurred in a plot process associated with this session since the last check/retrieve_errors
-    instance of <a class="reference internal" href="#makeplotplayable.ForeignProcessException" title="makeplotplayable.ForeignProcessException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignProcessException</span></code></a></p></li>
+<li><p><a class="reference internal" href="#playplot.AudioProcessException" title="playplot.AudioProcessException"><strong>AudioProcessException</strong></a> – Raised in case some error occurred in the audio process associated with this session since the last check/retrieve_errors
+    instance of <a class="reference internal" href="#playplot.ForeignProcessException" title="playplot.ForeignProcessException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignProcessException</span></code></a></p></li>
+<li><p><a class="reference internal" href="#playplot.PlotProcessException" title="playplot.PlotProcessException"><strong>PlotProcessException</strong></a> – Raised in case some error occurred in a plot process associated with this session since the last check/retrieve_errors
+    instance of <a class="reference internal" href="#playplot.ForeignProcessException" title="playplot.ForeignProcessException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignProcessException</span></code></a></p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="makeplotplayable.Session.duration">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">duration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><a class="headerlink" href="#makeplotplayable.Session.duration" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.duration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">duration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><a class="headerlink" href="#playplot.Session.duration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the duration of the associated audio (in seconds).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="makeplotplayable.Session.from_file">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">close_with_last_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fps_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_min_sleep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">looping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_msg_box_on_error_in_other_process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/makeplotplayable/_session.html#Session.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#makeplotplayable.Session.from_file" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.from_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">close_with_last_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fps_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_min_sleep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">looping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_msg_box_on_error_in_other_process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/playplot/session.html#Session.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#playplot.Session.from_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a Session from an audio file.
 For more see the constructor of this class</p>
 <dl class="field-list simple">
@@ -204,7 +208,7 @@ For more see the constructor of this class</p>
 <li><p><strong>close_with_last_plot</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)) – After last plot was closed no new plots can be created and audio playback will stop</p></li>
 <li><p><strong>fps_target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">60</span></code>)) – target frames per seconds for plots</p></li>
 <li><p><strong>plot_min_sleep</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">0.001</span></code>)) – minimal time the plotting processes will yield for (default should suffice)</p></li>
-<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)) – start time <em>see:</em> <a class="reference internal" href="#makeplotplayable.Session.time" title="makeplotplayable.Session.time"><code class="xref py py-attr docutils literal notranslate"><span class="pre">time</span></code></a></p></li>
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)) – start time <em>see:</em> <a class="reference internal" href="#playplot.Session.time" title="playplot.Session.time"><code class="xref py py-attr docutils literal notranslate"><span class="pre">time</span></code></a></p></li>
 <li><p><strong>volume</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">0.8</span></code>)) – audio volume as sample scalar (0-1)</p></li>
 <li><p><strong>looping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a> (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)) – restart at the beginning after the end is reached</p></li>
 <li><p><strong>show_msg_box_on_error_in_other_process</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>] (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)) – show a message box if an error occurs, useful if no explicit error handling is performed.
@@ -223,20 +227,20 @@ on by default if running in an interactive context.
 <dd class="field-odd"><p>Session instance</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#makeplotplayable.Session" title="makeplotplayable.Session">Session</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#playplot.Session" title="playplot.Session">Session</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="makeplotplayable.Session.is_running">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_running</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#makeplotplayable.Session.is_running" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.is_running">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_running</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#playplot.Session.is_running" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the Session is (still) running.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="makeplotplayable.Session.join">
-<span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_close_with_last_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/makeplotplayable/_session.html#Session.join"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#makeplotplayable.Session.join" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.join">
+<span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_close_with_last_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/playplot/session.html#Session.join"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#playplot.Session.join" title="Permalink to this definition">¶</a></dt>
 <dd><p>Block until all Plots are closed</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -252,22 +256,22 @@ on by default if running in an interactive context.
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="makeplotplayable.Session.looping">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">looping</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#makeplotplayable.Session.looping" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.looping">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">looping</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#playplot.Session.looping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Restart after end is reached.
 (argument in constructor)</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="makeplotplayable.Session.paused">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">paused</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#makeplotplayable.Session.paused" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.paused">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">paused</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#playplot.Session.paused" title="Permalink to this definition">¶</a></dt>
 <dd><p>Audio playback control.
 (may stay false after session has stopped running)</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="makeplotplayable.Session.retrieve_errors">
-<span class="sig-name descname"><span class="pre">retrieve_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/makeplotplayable/_session.html#Session.retrieve_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#makeplotplayable.Session.retrieve_errors" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.retrieve_errors">
+<span class="sig-name descname"><span class="pre">retrieve_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/playplot/session.html#Session.retrieve_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#playplot.Session.retrieve_errors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if something went wrong in the other processes and get the errors as a list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -281,8 +285,8 @@ Empty if no errors were raised.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="makeplotplayable.Session.start">
-<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/makeplotplayable/_session.html#Session.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#makeplotplayable.Session.start" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/playplot/session.html#Session.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#playplot.Session.start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start the session.
 Required for Audio Playback.
 Only callable once.
@@ -295,8 +299,8 @@ May be called before and after plots are opened.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="makeplotplayable.Session.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/makeplotplayable/_session.html#Session.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#makeplotplayable.Session.stop" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/playplot/session.html#Session.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#playplot.Session.stop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stop the session.
 This closes all interactive plots, no new plots can be opened.
 The Session can not be restarted.
@@ -304,15 +308,15 @@ Calling multiple times is allowed.</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="makeplotplayable.Session.time">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><a class="headerlink" href="#makeplotplayable.Session.time" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><a class="headerlink" href="#playplot.Session.time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Current cursor time will be clamped between 0-duration.
 (argument in constructor)</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="makeplotplayable.Session.volume">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volume</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><a class="headerlink" href="#makeplotplayable.Session.volume" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.Session.volume">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volume</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><a class="headerlink" href="#playplot.Session.volume" title="Permalink to this definition">¶</a></dt>
 <dd><p>Current volume will be clamped between 0-1.
 (argument in constructor)</p>
 </dd></dl>
@@ -320,41 +324,41 @@ Calling multiple times is allowed.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="makeplotplayable.ForeignProcessException">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">makeplotplayable.</span></span><span class="sig-name descname"><span class="pre">ForeignProcessException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatted_traceback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_stack</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/makeplotplayable/_util.html#ForeignProcessException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#makeplotplayable.ForeignProcessException" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.ForeignProcessException">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">playplot.</span></span><span class="sig-name descname"><span class="pre">ForeignProcessException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatted_traceback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_stack</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/playplot/_util.html#ForeignProcessException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#playplot.ForeignProcessException" title="Permalink to this definition">¶</a></dt>
 <dd><p>This Exception contains all attributes to capture important information coming from another process.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="makeplotplayable.ForeignProcessException.original_exception">
-<span class="sig-name descname"><span class="pre">original_exception</span></span><a class="headerlink" href="#makeplotplayable.ForeignProcessException.original_exception" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.ForeignProcessException.original_exception">
+<span class="sig-name descname"><span class="pre">original_exception</span></span><a class="headerlink" href="#playplot.ForeignProcessException.original_exception" title="Permalink to this definition">¶</a></dt>
 <dd><p>exception raised in other process</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="makeplotplayable.ForeignProcessException.original_traceback">
-<span class="sig-name descname"><span class="pre">original_traceback</span></span><a class="headerlink" href="#makeplotplayable.ForeignProcessException.original_traceback" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.ForeignProcessException.original_traceback">
+<span class="sig-name descname"><span class="pre">original_traceback</span></span><a class="headerlink" href="#playplot.ForeignProcessException.original_traceback" title="Permalink to this definition">¶</a></dt>
 <dd><p>traceback of exception raised in other process</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="makeplotplayable.ForeignProcessException.origin_stack">
-<span class="sig-name descname"><span class="pre">origin_stack</span></span><a class="headerlink" href="#makeplotplayable.ForeignProcessException.origin_stack" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.ForeignProcessException.origin_stack">
+<span class="sig-name descname"><span class="pre">origin_stack</span></span><a class="headerlink" href="#playplot.ForeignProcessException.origin_stack" title="Permalink to this definition">¶</a></dt>
 <dd><p>stack of process creation (main process)</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="makeplotplayable.AudioProcessException">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">makeplotplayable.</span></span><span class="sig-name descname"><span class="pre">AudioProcessException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatted_traceback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_stack</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/makeplotplayable/_util.html#AudioProcessException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#makeplotplayable.AudioProcessException" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.AudioProcessException">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">playplot.</span></span><span class="sig-name descname"><span class="pre">AudioProcessException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatted_traceback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_stack</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/playplot/_util.html#AudioProcessException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#playplot.AudioProcessException" title="Permalink to this definition">¶</a></dt>
 <dd><p>ForeignProcessException raised by audio process
-<a class="reference internal" href="#makeplotplayable.ForeignProcessException" title="makeplotplayable.ForeignProcessException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignProcessException</span></code></a></p>
+<a class="reference internal" href="#playplot.ForeignProcessException" title="playplot.ForeignProcessException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignProcessException</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="makeplotplayable.PlotProcessException">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">makeplotplayable.</span></span><span class="sig-name descname"><span class="pre">PlotProcessException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatted_traceback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_stack</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/makeplotplayable/_util.html#PlotProcessException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#makeplotplayable.PlotProcessException" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="playplot.PlotProcessException">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">playplot.</span></span><span class="sig-name descname"><span class="pre">PlotProcessException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatted_traceback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_stack</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/playplot/_util.html#PlotProcessException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#playplot.PlotProcessException" title="Permalink to this definition">¶</a></dt>
 <dd><p>ForeignProcessException raised by plot process
-<a class="reference internal" href="#makeplotplayable.ForeignProcessException" title="makeplotplayable.ForeignProcessException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignProcessException</span></code></a></p>
+<a class="reference internal" href="#playplot.ForeignProcessException" title="playplot.ForeignProcessException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignProcessException</span></code></a></p>
 </dd></dl>
 
 </section>

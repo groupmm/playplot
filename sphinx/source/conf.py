@@ -25,8 +25,10 @@ setup_cfg = setup_cfg["metadata"]
 project = setup_cfg["name"]
 author = setup_cfg["author"]
 
+
 # The full version, including alpha/beta/rc tags
 release = setup_cfg["version"]
+version = release
 
 
 # -- General configuration ---------------------------------------------------
@@ -73,3 +75,6 @@ typehints_defaults = 'braces'
 typehints_document_rtype = False
 
 html_use_index = True
+
+html_logo = os.path.join(html_static_path[0], 'playplot.png')
+html_theme_options = {'logo_only': True}

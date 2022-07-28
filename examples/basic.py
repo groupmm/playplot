@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from makeplotplayable import Session
+from playplot import Session
 
 from example_data import example_a_time_feature_mapping as time_feature_mapping, example_a_audio as audio, example_a_sr as sr
 
