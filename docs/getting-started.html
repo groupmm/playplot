@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; playplot 0.1.1b1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Api Documentation" href="api.html" />
+    <link rel="prev" title="Playplot" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/playplot.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.1b1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#playplot">Playplot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#minimal-example">Minimal Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-wrap-a-plotting-function">How to wrap a plotting function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiprocessing-limitations">Multiprocessing limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-sessions">Creating Sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-interaction">User interaction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Api Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-plot-function.html">The Plotting Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exception-handling.html">Exception Handling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">playplot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/getting-started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
+</section>
+<section id="playplot">
+<h1>Playplot<a class="headerlink" href="#playplot" title="Permalink to this heading">¶</a></h1>
+<p>This module allows multiple interactive matplotlib plots to be created and synced to a
+piece of audio.</p>
+<section id="minimal-example">
+<h2>Minimal Example<a class="headerlink" href="#minimal-example" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">playplot</span> <span class="kn">import</span> <span class="n">Session</span>
+
+<span class="c1"># crate a Session from the audio data (url not final)</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/meinardmueller/synctoolbox/blob/master/data_music/Schubert_D911-01_HU33.wav?raw=true&quot;</span><span class="p">)</span>
+
+<span class="c1"># decorate the plot function with the session</span>
+<span class="nd">@session</span>
+<span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">duration</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">duration</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;number of files played&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;time in seconds&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
+
+<span class="c1"># call the plot function, it will create the plot in another process</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">duration</span><span class="p">)</span>
+
+<span class="c1"># start the session to enable audio playback</span>
+<span class="n">session</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="c1"># Wait until all plots are closed (not necessary when running interactive)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="c1"># Check for potential exceptions in the other processes (not necessary when running interactive, an error msg will be displayed)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For more examples see the examples directory.
+More details are provided in the Readme.</p>
+</section>
+<section id="how-to-wrap-a-plotting-function">
+<h2>How to wrap a plotting function<a class="headerlink" href="#how-to-wrap-a-plotting-function" title="Permalink to this heading">¶</a></h2>
+<p>A plotting function can be wrapped with a decorator as seen in
+the minimal example, or we could wrap it manually. This is the option if the
+original function should be preserved, or is already defined.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">mono_audio_as_numpy_array</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="p">)</span>
+
+<span class="n">plot_wrapped</span> <span class="o">=</span> <span class="n">session</span><span class="p">(</span><span class="n">plot</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It is done simply by calling the Session instance with the function</p>
+</section>
+<section id="multiprocessing-limitations">
+<h2>Multiprocessing limitations<a class="headerlink" href="#multiprocessing-limitations" title="Permalink to this heading">¶</a></h2>
+<p>To be able to plot efficiently (in an interactive session at all), we need
+to use multiprocessing to run each plot in its own process.
+So we need to run our plotting functions in different processes.
+So the main process/thread does not block.</p>
+<p>This is generally transparent to the user but it complicates things like
+exception handling.</p>
+<p>It works well in interactive sessions like in a jupyter notebook.
+(The plots will be opened on the machine the kernel runs on)</p>
+<p>For more details about limitation look at the documentation of Multiprocessing and Dill.</p>
+</section>
+<section id="creating-sessions">
+<h2>Creating Sessions<a class="headerlink" href="#creating-sessions" title="Permalink to this heading">¶</a></h2>
+<p>Multiple Sessions can be created. Each Session can have multiple plots
+(theoretically also none). All plots can come from the same or different
+plotting functions.</p>
+<p>Sessions can either be created with a numpy array (mono or stereo)
+(Session constructor) or from a file with the help of soundfile
+(Session.from_file).
+The file can either be a file path or a http(s) url.
+The file will get streamed.</p>
+<p>For more details about the Session see the api documentation.</p>
+<p>Stopping a session will close all associated interactive plots, deleting
+a session stops the session on garbage collection.</p>
+</section>
+<section id="user-interaction">
+<h2>User interaction<a class="headerlink" href="#user-interaction" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p>Navigation: Don’t be in pan or zoom mode and simply click (or drag)
+while pressing the left or right mouse button</p>
+<p>Right mouse button will pause</p>
+<p>Left mouse button will play</p>
+</li>
+<li><p>Play/Pause: Space, Enter, middle mouse button</p></li>
+<li><p>Hide/Show cursor: c</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Playplot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="Api Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
