@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>playplot.session &mdash; playplot 0.0.3 documentation</title>
+  <title>playplot.session &mdash; playplot 0.1.1b1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             <img src="../../_static/playplot.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.0.3
+                0.1.1b1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -77,10 +77,8 @@
            <div itemprop="articleBody">
              
   <h1>Source code for playplot.session</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">queue</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">traceback</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
@@ -217,6 +215,7 @@
         <span class="k">if</span> <span class="n">show_msg_box_on_error_in_other_process</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">show_msg_box_on_error_in_other_process</span> <span class="o">=</span> <span class="n">runs_in_notebook</span><span class="p">()</span>
 
+        <span class="c1"># get metadata about the audio (file), in case a piece of audio is invalid an error should occur here</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
                 <span class="n">info</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -238,6 +237,8 @@
         <span class="c1"># the shared object will be available on all processes and allows for ipc via Values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="p">:</span> <span class="n">SharedObject</span> <span class="o">=</span> <span class="n">SharedObject</span><span class="p">(</span><span class="n">show_msg_box_on_error_in_other_process</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">close_with_last_plot</span><span class="p">,</span>
                                                <span class="n">fps_target</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">plot_min_sleep</span><span class="p">,</span> <span class="n">looping</span><span class="p">)</span>
+        <span class="c1"># we need to keep the shared object alive, even after this instance is deconstructed,</span>
+        <span class="c1"># so all processes can shut down properly</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__shared_object_storage</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__total_spawned_plots</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">time</span>
@@ -258,6 +259,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__audio_process</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Session can only be started once&quot;</span><span class="p">)</span>
 
+        <span class="c1"># record a stack trance, so in the case of an exception in another process, we can know where it originated</span>
         <span class="c1"># noinspection PyBroadException</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Future Exception (only used to capture a stack trace)&quot;</span><span class="p">)</span>
@@ -310,10 +312,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">was_paused</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="c1"># signal plot processes</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">plots_wrote_current_frame</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">save_as_frame_number</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">frame_number</span>
 
+        <span class="c1"># wait until all plots have written there file</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">plots_wrote_current_frame</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">open_plots</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
@@ -426,7 +430,7 @@
 <span class="sd">            Raised in case some error occurred in a plot process associated with this session since the last check/retrieve_errors</span>
 <span class="sd">            instance of :class:`~playplot.ForeignProcessException`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">error_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_errors</span><span class="p">()</span>
+        <span class="n">error_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">retrieve_errors</span><span class="p">())</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">error_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span>
 
@@ -565,12 +569,14 @@
 
         <span class="n">so</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span>
 
+        <span class="c1"># create wrapper function transfer metadata</span>
         <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="k">with</span> <span class="n">so</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">so</span><span class="o">.</span><span class="n">stop</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Session already stopped&quot;</span><span class="p">)</span>
 
+            <span class="c1"># record a stack trance, so in the case of an exception in another process, we can know where it originated</span>
             <span class="c1"># noinspection PyBroadException</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Future Exception (only used to capture a stack trace)&quot;</span><span class="p">)</span>

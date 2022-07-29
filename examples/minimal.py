@@ -4,7 +4,7 @@ from playplot import Session
 if __name__ == "__main__":
 
     # create a Session from the audio data (url not final) (also accepts local paths)
-    session = Session.from_file("https://github.com/meinardmueller/synctoolbox/blob/master/data_music/Schubert_D911-01_HU33.wav?raw=true")
+    session = Session.from_file("https://github.com/groupmm/playplot/blob/main/examples/example_data/bach_bwv245_no22_vokalensemble_ilmenau.wav?raw=true")
 
     # decorate the plot function with the session
     @session

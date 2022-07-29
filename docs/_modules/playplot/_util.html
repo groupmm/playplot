@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>playplot._util &mdash; playplot 0.0.3 documentation</title>
+  <title>playplot._util &mdash; playplot 0.1.1b1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             <img src="../../_static/playplot.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.0.3
+                0.1.1b1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -80,11 +80,9 @@
 <span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">Queue</span>
 
-<span class="kn">import</span> <span class="nn">PyQt5.QtWidgets</span>
-
 
 <span class="k">class</span> <span class="nc">SharedObject</span><span class="p">:</span>
-
+    <span class="sd">&quot;&quot;&quot;One instance per session handles all ipc&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show_msg_box_on_error_in_other_process</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">close_with_last_plot</span><span class="p">,</span> <span class="n">fps_target</span><span class="p">,</span>
                  <span class="n">save_folder</span><span class="p">,</span> <span class="n">plot_min_sleep</span><span class="p">,</span> <span class="n">looping</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">show_msg_box_on_error_in_other_process</span> <span class="o">=</span> <span class="n">show_msg_box_on_error_in_other_process</span>
@@ -109,7 +107,8 @@
 
 
 <span class="k">class</span> <span class="nc">UrlFile</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">exception_handler</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Provide a file like object from a (http) url, with seek capabilities&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">length</span>
@@ -147,6 +146,7 @@
 
 
 <span class="k">def</span> <span class="nf">show_error_box</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Show an errorbox, if no Qt application is running create one&quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QMessageBox</span><span class="p">,</span> <span class="n">QApplication</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">():</span>
         <span class="n">_</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">([])</span>
@@ -154,6 +154,7 @@
 
 
 <span class="k">def</span> <span class="nf">runs_in_notebook</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Check if it is executed in an interactive environment&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># noinspection PyUnresolvedReferences</span>
         <span class="k">return</span> <span class="n">__IPYTHON__</span>
@@ -170,7 +171,7 @@
 <span class="sd">    original_exception</span>
 <span class="sd">        exception raised in other process</span>
 
-<span class="sd">    original_traceback</span>
+<span class="sd">    formatted_traceback</span>
 <span class="sd">        traceback of exception raised in other process</span>
 
 <span class="sd">    origin_stack</span>
@@ -190,7 +191,7 @@
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">process_type</span> <span class="o">=</span> <span class="s1">&#39;the audio playback process&#39;</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">AudioProcessException</span><span class="p">)</span> <span class="k">else</span> \
             <span class="s1">&#39;a plotting playback process&#39;</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PlotProcessException</span><span class="p">)</span> <span class="k">else</span> \
-                <span class="s1">&#39;a foreign process&#39;</span>
+            <span class="s1">&#39;a foreign process&#39;</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;An </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">original_exception</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> occurred inside </span><span class="si">{</span><span class="n">process_type</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">ret</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formatted_traceback</span>
         <span class="n">ret</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">This Process was started from:</span><span class="se">\n</span><span class="s2">&quot;</span>

@@ -24,7 +24,7 @@ To run the examples locally and for development this repository is necessary.
 
 For a development installation run ```python -m pip install -e .```
 
-All additional dependencies can be installed via ```python -m pip --r requirements.txt```
+All additional dependencies can be installed via ```python -m pip -r requirements.txt```
 
 ## Usage
 
@@ -48,7 +48,7 @@ import matplotlib.pyplot as plt
 from playplot import Session
 
 # create a Session from the audio data (url not final)
-session = Session.from_file("https://github.com/meinardmueller/synctoolbox/blob/master/data_music/Schubert_D911-01_HU33.wav?raw=true")
+session = Session.from_file("https://github.com/groupmm/playplot/blob/main/examples/example_data/bach_bwv245_no22_vokalensemble_ilmenau.wav?raw=true")
 
 # decorate the plot function with the session
 @session
