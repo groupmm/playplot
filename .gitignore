@@ -6,6 +6,10 @@ dist
 build
 tests/_trial_temp
 *.pck
+/examples/.ipynb_checkpoints/
 
 examples/example_data/*
 !examples/example_data/__init__.py
+!examples/example_data/bach_bwv245_no22_vokalensemble_ilmenau.wav
+!examples/example_data/bach_bwv245_no22_vokalensemble_ilmenau_annotations.csv
+

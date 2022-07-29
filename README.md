@@ -1,6 +1,6 @@
-# PlayPlot
+# Playplot
 
-This repository contains a Python package called _PlayPlot_, 
+This repository contains a Python package called _playplot_, 
 which provides an __interactive audio playback for matplotlib plots including the creation, navigation, and synchronization of such plots.__
 Each plot is handled in its own process, allowing smooth animations without a blocking main thread/process.
 Plots can be started from a Python __script__ or an __interactive notebook__, with plots being shown in separate windows on the machine
@@ -10,7 +10,7 @@ where the kernel is running.
 ## References
 
 Daniel Keitel, Meinard Müller, Christof Weiß, and Sebastian Rosenzweig.  
-_PlayPlot: A Python Package to Sync Matplotlib Plots to Audio._  
+_Playplot: A Python Package to Sync Matplotlib Plots to Audio._  
 To be submitted to the Journal of Open Source Software (JOSS).
 
 ## Installing
@@ -85,7 +85,7 @@ Please do not submit a pull request without prior consultation to us.
 ## Licence
 The code for this package is published under an __MIT licence__.
 This does not apply to the data files in ``examples/example_data``.
-Example file ``Bach_BWV245-No22_VokalensembleIlmenau.wav`` is a recording of Choral No. 22 "Durch Dein Gefängnis" from J.S. Bachs _Johannespassion_, performed by Vokalensemble Ilmenau (conductor: Hans-Jürgen Freitag) at Jakobuskirche Ilmenau, 24.3.2013. Permission granted by the conductor to be used for demo and research purposes only.
+Example file ``bach_bwv245_no22_vokalensemble_ilmenau.wav`` is a recording of Choral No. 22 "Durch Dein Gefängnis" from J.S. Bachs _Johannespassion_, performed by Vokalensemble Ilmenau (conductor: Hans-Jürgen Freitag) at Jakobuskirche Ilmenau, 24.3.2013. Permission granted by the conductor to be used for demo and research purposes only.
 
 ## Acknowledgements
 The initial version of this library was created during a research internship of Daniel Keitel within a computer science master's program, under the supervision of Prof. Dr. Meinard Müller, Dr. Christof Weiß and Dr. des. Sebastian Rosenzweig at 

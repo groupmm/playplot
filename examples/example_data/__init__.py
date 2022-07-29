@@ -2,10 +2,10 @@ import os
 import numpy as np
 __base_path = os.path.abspath(os.path.dirname(__file__))
 
-simple_audio_file = os.path.join(__base_path, "simple_audio.wav")
+simple_audio_file = os.path.join(__base_path, "bach_bwv245_no22_vokalensemble_ilmenau.wav")
 # any wave file
 
-simple_annotations_file = os.path.join(__base_path, "simple_annotations.csv")
+simple_annotations_file = os.path.join(__base_path, "bach_bwv245_no22_vokalensemble_ilmenau_annotations.csv")
 # annotations to said wave file
 # two columns (strongly monotonic rising)
 # first column: time in audio file

@@ -118,7 +118,7 @@ class ProcessCreationTests(TestCaseHelper):
 
         del session
 
-    @patch('src.playplot._session._plot_process_start_helper')
+    @patch('src.playplot.session._plot_process_start_helper')
     def test_process_creation(self, mocked):
         session = Session(audio, sr)
 
