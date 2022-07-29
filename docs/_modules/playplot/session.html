@@ -118,6 +118,7 @@
                   <span class="n">time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
                   <span class="n">volume</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
                   <span class="n">looping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                  <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
                   <span class="n">show_msg_box_on_error_in_other_process</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Session&#39;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a Session from an audio file.</span>
@@ -139,6 +140,8 @@
 <span class="sd">            audio volume as sample scalar (0-1)</span>
 <span class="sd">        looping</span>
 <span class="sd">            restart at the beginning after the end is reached</span>
+<span class="sd">        save_folder</span>
+<span class="sd">            existing folder where plot images get saved</span>
 <span class="sd">        show_msg_box_on_error_in_other_process</span>
 <span class="sd">            show a message box if an error occurs, useful if no explicit error handling is performed.</span>
 <span class="sd">            on by default if running in an interactive context.</span>
@@ -161,7 +164,7 @@
 <span class="sd">            Session instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">close_with_last_plot</span><span class="o">=</span><span class="n">close_with_last_plot</span><span class="p">,</span> <span class="n">fps_target</span><span class="o">=</span><span class="n">fps_target</span><span class="p">,</span>
-                   <span class="n">plot_min_sleep</span><span class="o">=</span><span class="n">plot_min_sleep</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="n">volume</span><span class="p">,</span> <span class="n">looping</span><span class="o">=</span><span class="n">looping</span><span class="p">,</span>
+                   <span class="n">plot_min_sleep</span><span class="o">=</span><span class="n">plot_min_sleep</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="n">volume</span><span class="p">,</span> <span class="n">looping</span><span class="o">=</span><span class="n">looping</span><span class="p">,</span> <span class="n">save_folder</span><span class="o">=</span><span class="n">save_folder</span><span class="p">,</span>
                    <span class="n">show_msg_box_on_error_in_other_process</span><span class="o">=</span><span class="n">show_msg_box_on_error_in_other_process</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="o">/</span><span class="p">,</span> <span class="n">sr</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
@@ -171,6 +174,7 @@
                  <span class="n">time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
                  <span class="n">volume</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
                  <span class="n">looping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">save_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
                  <span class="n">show_msg_box_on_error_in_other_process</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A Session allows audio playback linked to multiple interactive matplotlib plots.</span>
@@ -203,6 +207,8 @@
 <span class="sd">            audio volume as sample scalar (0-1)</span>
 <span class="sd">        looping</span>
 <span class="sd">            restart at the beginning after the end is reached</span>
+<span class="sd">        save_folder</span>
+<span class="sd">            existing folder where plot images get saved</span>
 <span class="sd">        show_msg_box_on_error_in_other_process</span>
 <span class="sd">            show a message box if an error occurs, useful if no explicit error handling is performed.</span>
 <span class="sd">            on by default if running in an interactive context.</span>
@@ -231,8 +237,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__sr</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">sr</span>
         <span class="c1"># the shared object will be available on all processes and allows for ipc via Values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="p">:</span> <span class="n">SharedObject</span> <span class="o">=</span> <span class="n">SharedObject</span><span class="p">(</span><span class="n">show_msg_box_on_error_in_other_process</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">close_with_last_plot</span><span class="p">,</span>
-                                               <span class="n">fps_target</span><span class="p">,</span> <span class="n">plot_min_sleep</span><span class="p">,</span> <span class="n">looping</span><span class="p">)</span>
+                                               <span class="n">fps_target</span><span class="p">,</span> <span class="n">save_folder</span><span class="p">,</span> <span class="n">plot_min_sleep</span><span class="p">,</span> <span class="n">looping</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__shared_object_storage</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__total_spawned_plots</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="n">volume</span>
 
@@ -276,6 +283,46 @@
     <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 
+<div class="viewcode-block" id="Session.save_plot_images"><a class="viewcode-back" href="../../api.html#playplot.Session.save_plot_images">[docs]</a>    <span class="k">def</span> <span class="nf">save_plot_images</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_number</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Saves images of all currently open plots,</span>
+<span class="sd">        in the folder ``save_folder`` provided to the constructor.</span>
+<span class="sd">        The files are named title_frame_number.png.</span>
+<span class="sd">        If multiple plots are saved the titles must differ.</span>
+<span class="sd">        Don&#39;t interact with the plots while this function runs.</span>
+
+<span class="sd">        Can be used to help creat a video::</span>
+
+<span class="sd">            start = 0</span>
+<span class="sd">            end = session.duration</span>
+<span class="sd">            fps = 30</span>
+
+<span class="sd">            for i in range(int((end-start)*fps)):</span>
+<span class="sd">                session.time = i/fps+start</span>
+<span class="sd">                session.save_plot_images(i)</span>
+
+<span class="sd">        It is not fast.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        frame_number</span>
+<span class="sd">            part of the output file names</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">was_paused</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">plots_wrote_current_frame</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">save_as_frame_number</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">frame_number</span>
+
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">plots_wrote_current_frame</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">open_plots</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+                    <span class="k">break</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">was_paused</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="kc">False</span></div>
+
 <div class="viewcode-block" id="Session.join"><a class="viewcode-back" href="../../api.html#playplot.Session.join">[docs]</a>    <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force_close_with_last_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Block until all Plots are closed</span>
@@ -301,10 +348,47 @@
                     <span class="k">return</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">openPlots</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">open_plots</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                         <span class="k">if</span> <span class="n">force_close_with_last_plot</span><span class="p">:</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
                         <span class="k">return</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Session.wait_for_plots_opening"><a class="viewcode-back" href="../../api.html#playplot.Session.wait_for_plots_opening">[docs]</a>    <span class="k">def</span> <span class="nf">wait_for_plots_opening</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_plots</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">supress_timeout_error</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Block until at least `number_of_plots` are open.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        number_of_plots</span>
+<span class="sd">            Wait until `number of plots` are open (&gt;=0).</span>
+<span class="sd">            Defaults to total number of plots spawned by this session.</span>
+<span class="sd">        timeout</span>
+<span class="sd">            Raises TimeoutError if reached (default: blocks forever) and supress_timeout_error is not set.</span>
+<span class="sd">        supress_timeout_error</span>
+<span class="sd">            Simply return when the timeout is reached.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TimeoutError</span>
+<span class="sd">            Timeout reached</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">monotonic</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">number_of_plots</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">number_of_plots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_spawned_plots</span>
+
+        <span class="k">if</span> <span class="n">number_of_plots</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;number_of_plots is negative&quot;</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">monotonic</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">start_time</span> <span class="o">+</span> <span class="n">timeout</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">supress_timeout_error</span><span class="p">:</span>
+                    <span class="k">return</span>
+                <span class="k">raise</span> <span class="ne">TimeoutError</span><span class="p">()</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">open_plots</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;=</span> <span class="n">number_of_plots</span><span class="p">:</span>
+                    <span class="k">return</span>
             <span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Session.retrieve_errors"><a class="viewcode-back" href="../../api.html#playplot.Session.retrieve_errors">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">AudioProcessException</span><span class="p">,</span> <span class="n">PlotProcessException</span><span class="p">]]:</span>
@@ -429,6 +513,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__so</span><span class="o">.</span><span class="n">duration</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">total_spawned_plots</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the total amount of plots spawned by this session.</span>
+<span class="sd">        This value get immediately incremented after calling the plot function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__total_spawned_plots</span>
+
 <div class="viewcode-block" id="Session.__call__"><a class="viewcode-back" href="../../api.html#playplot.Session.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to wrap plotting function to use with Session.</span>
@@ -492,6 +584,8 @@
                 <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">_plot_process_start_helper</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">so</span><span class="p">,</span> <span class="n">stack</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">__total_spawned_plots</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="k">return</span> <span class="n">wrapper</span></div></div>
 </pre></div>

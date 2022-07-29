@@ -1,4 +1,5 @@
 import math
+import os.path
 import sys
 import traceback
 from time import perf_counter, sleep
@@ -244,11 +245,14 @@ class MPP:
 
         last_frame = perf_counter()
 
+        last_save_index = -1
+
         # detect when window is closed
         while plt.fignum_exists(fig_num):
             with so.lock:
                 if so.stop.value:
                     break
+                save_index = so.save_as_frame_number.value
                 fps_target = so.fps_target.value
                 min_delay = so.plot_min_sleep.value
                 time = so.time.value
@@ -291,6 +295,13 @@ class MPP:
             else:
                 # gui needs time to process internal updates
                 self.fig.canvas.flush_events()
+
+            # save plot as png
+            if save_index != -1 and save_index != last_save_index:
+                _save_fig_as_png(self.fig, os.path.join(so.save_folder, f"{self.params['title']}_{save_index:06d}.png"))
+                with so.lock:
+                    so.plots_wrote_current_frame.value += 1
+            last_save_index = save_index
 
             # sleep to give processor time for other tasks
             now = perf_counter()
@@ -337,7 +348,7 @@ def plot_process_entrypoint(so: SharedObject, dill):
     try:
         func, stack, args, kwargs = loads(dill)
         with so.lock:
-            so.openPlots.value = so.openPlots.value + (2 if so.openPlots.value < 0 else 1)
+            so.open_plots.value = so.open_plots.value + (2 if so.open_plots.value < 0 else 1)
 
     except KeyboardInterrupt:
         return
@@ -358,7 +369,7 @@ def plot_process_entrypoint(so: SharedObject, dill):
                 pass
 
         with so.lock:
-            so.openPlots.value -= 1
+            so.open_plots.value -= 1
             if not issubclass(exc_type, KeyboardInterrupt):
                 so.error_queue_size.value += 1
                 so.total_error_count.value += 1
@@ -378,9 +389,16 @@ def plot_process_entrypoint(so: SharedObject, dill):
             mpp.loop()
 
         with so.lock:
-            so.openPlots.value -= 1
+            so.open_plots.value -= 1
     except Exception:
         handle_exception(*sys.exc_info())
+
+
+def _save_fig_as_png(fig, file):
+    # No idea how to do it any other way
+    # noinspection PyProtectedMember
+    surface = fig.canvas._renderer.gc.ctx.get_target()
+    surface.write_to_png(file)
 
 
 class BlitManager:

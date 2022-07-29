@@ -7,9 +7,10 @@ import PyQt5.QtWidgets
 class SharedObject:
 
     def __init__(self, show_msg_box_on_error_in_other_process, duration, close_with_last_plot, fps_target,
-                 plot_min_sleep, looping):
+                 save_folder, plot_min_sleep, looping):
         self.show_msg_box_on_error_in_other_process = show_msg_box_on_error_in_other_process
         self.duration = duration
+        self.save_folder = save_folder
         self.lock = Lock()
         self.close_with_last_plot: bool = close_with_last_plot
         self.fps_target = Value('d', fps_target, lock=False)
@@ -19,8 +20,10 @@ class SharedObject:
         self.paused = Value('i', True, lock=False)
         self.looping = Value('i', looping, lock=False)
         self.stop = Value('i', False, lock=False)
-        self.openPlots: Value = Value('i', -1, lock=False)
+        self.open_plots: Value = Value('i', -1, lock=False)
         self.time_skip = Value('i', False, lock=False)
+        self.save_as_frame_number = Value('i', -1, lock=False)
+        self.plots_wrote_current_frame = Value('i', 0, lock=False)
         self.total_error_count = Value('i', 0, lock=False)
         self.error_queue_size = Value('i', 0, lock=False)
         self.error_queue = Queue()

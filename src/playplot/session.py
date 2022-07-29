@@ -39,6 +39,7 @@ class Session:
                   time: float = 0,
                   volume: float = 0.8,
                   looping: bool = False,
+                  save_folder: str = ".",
                   show_msg_box_on_error_in_other_process: Optional[bool] = None) -> 'Session':
         """
         Construct a Session from an audio file.
@@ -60,6 +61,8 @@ class Session:
             audio volume as sample scalar (0-1)
         looping
             restart at the beginning after the end is reached
+        save_folder
+            existing folder where plot images get saved
         show_msg_box_on_error_in_other_process
             show a message box if an error occurs, useful if no explicit error handling is performed.
             on by default if running in an interactive context.
@@ -82,7 +85,7 @@ class Session:
             Session instance
         """
         return cls(file, 0, close_with_last_plot=close_with_last_plot, fps_target=fps_target,
-                   plot_min_sleep=plot_min_sleep, time=time, volume=volume, looping=looping,
+                   plot_min_sleep=plot_min_sleep, time=time, volume=volume, looping=looping, save_folder=save_folder,
                    show_msg_box_on_error_in_other_process=show_msg_box_on_error_in_other_process)
 
     def __init__(self, x: Union[np.ndarray, str], /, sr: int, *,
@@ -92,6 +95,7 @@ class Session:
                  time: float = 0,
                  volume: float = 0.8,
                  looping: bool = False,
+                 save_folder: str = ".",
                  show_msg_box_on_error_in_other_process: Optional[bool] = None):
         """
         A Session allows audio playback linked to multiple interactive matplotlib plots.
@@ -124,6 +128,8 @@ class Session:
             audio volume as sample scalar (0-1)
         looping
             restart at the beginning after the end is reached
+        save_folder
+            existing folder where plot images get saved
         show_msg_box_on_error_in_other_process
             show a message box if an error occurs, useful if no explicit error handling is performed.
             on by default if running in an interactive context.
@@ -152,8 +158,9 @@ class Session:
         self.__sr: int = sr
         # the shared object will be available on all processes and allows for ipc via Values
         self.__so: SharedObject = SharedObject(show_msg_box_on_error_in_other_process, duration, close_with_last_plot,
-                                               fps_target, plot_min_sleep, looping)
+                                               fps_target, save_folder, plot_min_sleep, looping)
         self.__class__.__shared_object_storage.append(self.__so)
+        self.__total_spawned_plots = 0
         self.time = time
         self.volume = volume
 
@@ -197,6 +204,46 @@ class Session:
     def __del__(self):
         self.stop()
 
+    def save_plot_images(self, frame_number: int) -> None:
+        """
+        Saves images of all currently open plots,
+        in the folder ``save_folder`` provided to the constructor.
+        The files are named title_frame_number.png.
+        If multiple plots are saved the titles must differ.
+        Don't interact with the plots while this function runs.
+
+        Can be used to help creat a video::
+
+            start = 0
+            end = session.duration
+            fps = 30
+
+            for i in range(int((end-start)*fps)):
+                session.time = i/fps+start
+                session.save_plot_images(i)
+
+        It is not fast.
+
+        Parameters
+        ----------
+        frame_number
+            part of the output file names
+        """
+        was_paused = self.paused
+        self.paused = True
+        with self.__so.lock:
+            self.__so.plots_wrote_current_frame.value = 0
+            self.__so.save_as_frame_number.value = frame_number
+
+        while True:
+            with self.__so.lock:
+                if self.__so.plots_wrote_current_frame.value >= self.__so.open_plots.value:
+                    break
+            sleep(0.001)
+
+        if not was_paused:
+            self.paused = False
+
     def join(self, timeout=None, force_close_with_last_plot=True) -> None:
         """
         Block until all Plots are closed
@@ -222,10 +269,47 @@ class Session:
                     return
             else:
                 with self.__so.lock:
-                    if self.__so.openPlots.value == 0:
+                    if self.__so.open_plots.value == 0:
                         if force_close_with_last_plot:
                             self.stop()
                         return
+            sleep(0.01)
+
+    def wait_for_plots_opening(self, number_of_plots=None, timeout=10, supress_timeout_error=True):
+        """
+        Block until at least `number_of_plots` are open.
+
+        Parameters
+        ----------
+        number_of_plots
+            Wait until `number of plots` are open (>=0).
+            Defaults to total number of plots spawned by this session.
+        timeout
+            Raises TimeoutError if reached (default: blocks forever) and supress_timeout_error is not set.
+        supress_timeout_error
+            Simply return when the timeout is reached.
+
+        Raises
+        ------
+        TimeoutError
+            Timeout reached
+        """
+        start_time = monotonic()
+
+        if number_of_plots is None:
+            number_of_plots = self.total_spawned_plots
+
+        if number_of_plots < 0:
+            raise ValueError("number_of_plots is negative")
+
+        while True:
+            if timeout is not None and monotonic() > start_time + timeout:
+                if supress_timeout_error:
+                    return
+                raise TimeoutError()
+            with self.__so.lock:
+                if self.__so.open_plots.value >= number_of_plots:
+                    return
             sleep(0.01)
 
     def retrieve_errors(self) -> List[Union[AudioProcessException, PlotProcessException]]:
@@ -350,6 +434,14 @@ class Session:
         """
         return self.__so.duration
 
+    @property
+    def total_spawned_plots(self) -> int:
+        """
+        Get the total amount of plots spawned by this session.
+        This value get immediately incremented after calling the plot function
+        """
+        return self.__total_spawned_plots
+
     def __call__(self, func):
         """
         Function to wrap plotting function to use with Session.
@@ -413,5 +505,7 @@ class Session:
                 t.start()
             else:
                 _plot_process_start_helper(func, so, stack, args, kwargs)
+
+            self.__total_spawned_plots += 1
 
         return wrapper

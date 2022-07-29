@@ -248,7 +248,7 @@ class Playback:
                 raise self.gen_exception
 
             with so.lock:
-                if so.stop.value or (so.close_with_last_plot and so.openPlots.value == 0):
+                if so.stop.value or (so.close_with_last_plot and so.open_plots.value == 0):
                     break
 
                 time = so.time.value
