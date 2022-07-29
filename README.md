@@ -9,8 +9,8 @@ where the kernel is running.
 
 ## References
 
-Daniel Keitel, Meinard Müller, Christof Weiß, and Sebastian Rosenzweig.
-_PlayPlot: A Python Package to Sync Matplotlib Plots to Audio._
+Daniel Keitel, Meinard Müller, Christof Weiß, and Sebastian Rosenzweig.  
+_PlayPlot: A Python Package to Sync Matplotlib Plots to Audio._  
 To be submitted to the Journal of Open Source Software (JOSS).
 
 ## Installing
@@ -75,7 +75,7 @@ session.check()
 There are some test script in the `tests` folder, mostly focussing on process management and error handling.
 
 ### Docs
-The documentation is built with sphinx and hosted on GitHub Pages.
+The documentation is built with sphinx and hosted on __GitHub Pages__.
 
 ## Contributing
 We welcome any suggestions and contributions.
@@ -83,7 +83,7 @@ For contributing, please create an issue within this GitHub repository.
 Please do not submit a pull request without prior consultation to us.
 
 ## Licence
-The code for this package is published under an MIT licence.
+The code for this package is published under an __MIT licence__.
 This does not apply to the data files in ``examples/example_data``.
 Example file ``Bach_BWV245-No22_VokalensembleIlmenau.wav`` is a recording of Choral No. 22 "Durch Dein Gefängnis" from J.S. Bachs _Johannespassion_, performed by Vokalensemble Ilmenau (conductor: Hans-Jürgen Freitag) at Jakobuskirche Ilmenau, 24.3.2013. Permission granted by the conductor to be used for demo and research purposes only.
 
@@ -93,8 +93,8 @@ the International Audio Laboratories Erlangen, which are a joint institution of 
 This Python library is closely inspired by the MATLAB tool ``MakePlotPlayable``, implemented by Harald Grohganz and colleagues and part of the MATLAB SM Toolbox [1].
 We also thank the German Research Foundation (DFG) for various research grants that allowed us for conducting fundamental research in music processing.
 
-[1] Meinard Müller, Nanzhu Jiang, and Harald G. Grohganz
-_SM Toolbox: MATLAB Implementations for Computing and Enhancing Similarity Matrices_
-Proceedings of 53rd Audio Engineering Society (AES) Conference on Semantic Audio
-London, UK, 2014.
+[1] Meinard Müller, Nanzhu Jiang, and Harald G. Grohganz  
+_SM Toolbox: MATLAB Implementations for Computing and Enhancing Similarity Matrices_  
+Proceedings of 53rd Audio Engineering Society (AES) Conference on Semantic Audio  
+London, UK, 2014.  
 https://www.audiolabs-erlangen.de/resources/MIR/SMtoolbox
