@@ -1,16 +1,16 @@
-# Playplot
+# PlayPlot
 
-This repository contains a Python package called Playplot, 
-which provides the ability to create and sync multiple interactive matplotlib plots to a piece of audio.
+This repository contains a Python package called _PlayPlot_, 
+which provides an __interactive audio playback for matplotlib plots including the creation, navigation, and synchronization of such plots.__
 Each plot is handled in its own process, allowing smooth animations without a blocking main thread/process.
-This package works great inside interactive notebooks, with the limitations, that plots are shown on the machine
-where the kernel runs.
+Plots can be started from a Python __script__ or an __interactive notebook__, with plots being shown in separate windows on the machine
+where the kernel is running.
 
 
 ## References
 
-Daniel Keitel, Meinard Müller, Christof Weiß and Sebastian Rosenzweig.
-Playplot: A Python Package to Sync Matplotlib Plots to Audio.
+Daniel Keitel, Meinard Müller, Christof Weiß, and Sebastian Rosenzweig.
+_PlayPlot: A Python Package to Sync Matplotlib Plots to Audio._
 To be submitted to the Journal of Open Source Software (JOSS).
 
 ## Installing
@@ -31,15 +31,15 @@ All additional dependencies can be installed via ```python -m pip --r requiremen
 ### Examples
 
 For examples see the `examples` folder of this repository.
-These examples need some local data to function properly (except ``minimal``)
+These examples need some local data to work properly (except ``minimal``)
 
 Those files are provided for all examples except for ``advanced``.
 See ``examples/example_data/__init__.py`` for which files are additionally required. 
-Members of the Audiolabs can find the missing files on lin2 under ``/GroupMM/Students/Work_DK/example_data/``
+Members of GroupMM can find the missing files on lin2 under ``/GroupMM/Students/Work_DK/example_data/``
 
 The ``minimal`` and ``basic`` examples don't have additional dependencies.
 ``intermediate`` requires ``libfmp`` (can be installed via ``python -m pip install libfmp``)
-``advanced`` has the most dependencies. I recommend installing from the requirements.txt files. (``python -m pip install -r requirements.txt``) 
+``advanced`` has the most dependencies. We recommend installing from the requirements.txt files. (``python -m pip install -r requirements.txt``) 
 
 #### Minimal Example
 
@@ -72,27 +72,29 @@ session.check()
 ```
 
 ### Tests
-
-There are some tests in the `tests` folder.
-They mostly focus the process managing and error handling.
+There are some test script in the `tests` folder, mostly focussing on process management and error handling.
 
 ### Docs
-
-The documentation is built with sphinx.
-It is hosted on GitHub Pages.
+The documentation is built with sphinx and hosted on GitHub Pages.
 
 ## Contributing
-I am happy for suggestions and contributions.
-I would be grateful for creating an issue in this GitHub repository.
-Please do not submit a pull request without prior consultation with me.
+We welcome any suggestions and contributions.
+For contributing, please create an issue within this GitHub repository.
+Please do not submit a pull request without prior consultation to us.
 
 ## Licence
-
 The code for this package is published under an MIT licence.
 This does not apply to the data files in ``examples/example_data``.
+Example file ``Bach_BWV245-No22_VokalensembleIlmenau.wav`` is a recording of Choral No. 22 "Durch Dein Gefängnis" from J.S. Bachs _Johannespassion_, performed by Vokalensemble Ilmenau (conductor: Hans-Jürgen Freitag) at Jakobuskirche Ilmenau, 24.3.2013. Permission granted by the conductor to be used for demo and research purposes only.
 
 ## Acknowledgements
-This library was initially created for a project in my master's degree in computer science.
-Under the suppervision of Prof. Dr. Meinard Müller, Dr. Christof Weiß and (Dr.) Sebastian Rosenzweig at 
+The initial version of this library was created during a research internship of Daniel Keitel within a computer science master's program, under the supervision of Prof. Dr. Meinard Müller, Dr. Christof Weiß and Dr. des. Sebastian Rosenzweig at 
 the International Audio Laboratories Erlangen, which are a joint institution of the Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU) and Fraunhofer Institute for Integrated Circuits IIS. 
+This Python library is closely inspired by the MATLAB tool ``MakePlotPlayable``, implemented by Harald Grohganz and colleagues and part of the MATLAB SM Toolbox [1].
 We also thank the German Research Foundation (DFG) for various research grants that allowed us for conducting fundamental research in music processing.
+
+[1] Meinard Müller, Nanzhu Jiang, and Harald G. Grohganz
+_SM Toolbox: MATLAB Implementations for Computing and Enhancing Similarity Matrices_
+Proceedings of 53rd Audio Engineering Society (AES) Conference on Semantic Audio
+London, UK, 2014.
+https://www.audiolabs-erlangen.de/resources/MIR/SMtoolbox
