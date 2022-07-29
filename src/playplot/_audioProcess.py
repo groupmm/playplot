@@ -72,6 +72,7 @@ class AudioFileReaderThread(threading.Thread):
                 if self.stop:
                     self._sf.close()
                     return
+                # next frame is misaligned
                 if self.next_requested_frame != self.start_frame:
                     with self.lock:
                         # new position is inside of buffer -> move buffer
@@ -86,6 +87,7 @@ class AudioFileReaderThread(threading.Thread):
                             self.start_frame = self.next_requested_frame
                             self.number_of_frames = 0
 
+                # next frame is ready, but more frames fit in the buffer
                 elif self.buffer.shape[0] - self.number_of_frames > self.chunk_size and \
                         self.length - self.start_frame - self.number_of_frames > 0:
                     insert_position = self.start_frame + self.number_of_frames
@@ -103,9 +105,6 @@ class AudioFileReaderThread(threading.Thread):
                     time.sleep(0.01)
         except Exception as e:
             self.thread_exception = e
-
-        # f.seek(start)
-        # f.read(stop - start, dtype='float32', always_2d=True)
 
 
 class Playback:
@@ -190,7 +189,7 @@ class Playback:
                 raise e
             self.gen_exception = e
 
-    # generator function based on ndarray
+    # generator function based on a file (urls result in file like objects)
     def gen_file(self):
         try:
             x: str = self.x
@@ -251,7 +250,7 @@ class Playback:
                 if so.stop.value or (so.close_with_last_plot and so.open_plots.value == 0):
                     break
 
-                time = so.time.value
+                time_ = so.time.value
                 time_skip = so.time_skip.value
                 so.time_skip.value = False
 
@@ -266,7 +265,7 @@ class Playback:
                     self.paused = so.paused.value
 
                 if time_skip:
-                    self.override_time = time
+                    self.override_time = time_
 
                 # prevent old time to be propagated
                 if self.new_time_used and self.override_time is None:
@@ -316,5 +315,3 @@ def audio_process_entrypoint(so: SharedObject, x, sr, stack):
         pb.close()
     except Exception:
         handle_exception(*sys.exc_info())
-
-

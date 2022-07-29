@@ -1,11 +1,9 @@
 import urllib.request
 from multiprocessing import Value, Lock, Queue
 
-import PyQt5.QtWidgets
-
 
 class SharedObject:
-
+    """One instance per session handles all ipc"""
     def __init__(self, show_msg_box_on_error_in_other_process, duration, close_with_last_plot, fps_target,
                  save_folder, plot_min_sleep, looping):
         self.show_msg_box_on_error_in_other_process = show_msg_box_on_error_in_other_process
@@ -30,7 +28,8 @@ class SharedObject:
 
 
 class UrlFile:
-    def __init__(self, url, exception_handler=None):
+    """Provide a file like object from a (http) url, with seek capabilities"""
+    def __init__(self, url):
         self.url = url
         self.sock = urllib.request.urlopen(url, timeout=2)
         self.length = self.sock.length
@@ -68,6 +67,7 @@ class UrlFile:
 
 
 def show_error_box(text: str):
+    """Show an errorbox, if no Qt application is running create one"""
     from PyQt5.QtWidgets import QMessageBox, QApplication
     if not QApplication.instance():
         _ = QApplication([])
@@ -75,6 +75,7 @@ def show_error_box(text: str):
 
 
 def runs_in_notebook() -> bool:
+    """Check if it is executed in an interactive environment"""
     try:
         # noinspection PyUnresolvedReferences
         return __IPYTHON__
@@ -91,7 +92,7 @@ class ForeignProcessException(Exception):
     original_exception
         exception raised in other process
 
-    original_traceback
+    formatted_traceback
         traceback of exception raised in other process
 
     origin_stack
@@ -111,7 +112,7 @@ class ForeignProcessException(Exception):
     def __str__(self):
         process_type = 'the audio playback process' if isinstance(self, AudioProcessException) else \
             'a plotting playback process' if isinstance(self, PlotProcessException) else \
-                'a foreign process'
+            'a foreign process'
         ret = f"An {type(self.original_exception).__name__} occurred inside {process_type}:\n"
         ret += self.formatted_traceback
         ret += "\nThis Process was started from:\n"

@@ -72,7 +72,6 @@ def build_mapping_function_dense_time_to_pos(ticks, first_tick, last_tick):
 
 # Main plot class
 class MPP:
-
     def pos_to_time(self, p: float) -> float:
         time = self.map_pos_to_time(p)
         return max(0, min(self.so.duration, time))

@@ -1,7 +1,5 @@
-import multiprocessing
 import os
 import queue
-import sys
 import threading
 import traceback
 from functools import wraps
@@ -138,6 +136,7 @@ class Session:
         if show_msg_box_on_error_in_other_process is None:
             show_msg_box_on_error_in_other_process = runs_in_notebook()
 
+        # get metadata about the audio (file), in case a piece of audio is invalid an error should occur here
         if isinstance(x, str):
             if os.path.isfile(x):
                 info = sf.info(x)
@@ -159,6 +158,8 @@ class Session:
         # the shared object will be available on all processes and allows for ipc via Values
         self.__so: SharedObject = SharedObject(show_msg_box_on_error_in_other_process, duration, close_with_last_plot,
                                                fps_target, save_folder, plot_min_sleep, looping)
+        # we need to keep the shared object alive, even after this instance is deconstructed,
+        # so all processes can shut down properly
         self.__class__.__shared_object_storage.append(self.__so)
         self.__total_spawned_plots = 0
         self.time = time
@@ -179,6 +180,7 @@ class Session:
         if self.__audio_process is not None:
             raise RuntimeError("Session can only be started once")
 
+        # record a stack trance, so in the case of an exception in another process, we can know where it originated
         # noinspection PyBroadException
         try:
             raise Exception("Future Exception (only used to capture a stack trace)")
@@ -231,10 +233,12 @@ class Session:
         """
         was_paused = self.paused
         self.paused = True
+        # signal plot processes
         with self.__so.lock:
             self.__so.plots_wrote_current_frame.value = 0
             self.__so.save_as_frame_number.value = frame_number
 
+        # wait until all plots have written there file
         while True:
             with self.__so.lock:
                 if self.__so.plots_wrote_current_frame.value >= self.__so.open_plots.value:
@@ -347,7 +351,7 @@ class Session:
             Raised in case some error occurred in a plot process associated with this session since the last check/retrieve_errors
             instance of :class:`~playplot.ForeignProcessException`
         """
-        error_list = self.retrieve_errors()
+        error_list = list(self.retrieve_errors())
         if len(error_list) == 0:
             return
 
@@ -486,12 +490,14 @@ class Session:
 
         so = self.__so
 
+        # create wrapper function transfer metadata
         @wraps(func)
         def wrapper(*args, **kwargs):
             with so.lock:
                 if so.stop.value:
                     raise RuntimeError("Session already stopped")
 
+            # record a stack trance, so in the case of an exception in another process, we can know where it originated
             # noinspection PyBroadException
             try:
                 raise Exception("Future Exception (only used to capture a stack trace)")
