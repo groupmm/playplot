@@ -75,7 +75,7 @@ session.check()
 There are some test script in the `tests` folder, mostly focussing on process management and error handling.
 
 ### Docs
-The documentation is built with sphinx and hosted on __GitHub Pages__.
+The [documentation](https://groupmm.github.io/playplot/) is built with sphinx and hosted on __GitHub Pages__.
 
 ## Contributing
 We welcome any suggestions and contributions.
